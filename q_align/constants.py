@@ -1,0 +1,3 @@
+# LLaVA Constants
+LLaVA_IMAGE_TOKEN_INDEX = 151646
+LLaVA_DEFAULT_IMAGE_TOKEN = "<|image|>"
