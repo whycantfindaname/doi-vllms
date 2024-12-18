@@ -59,7 +59,11 @@ class Qwen2VLDataCollator(BaseDataCollator):
             cur_labels = []
             cur_pixel_values = []
             cur_vision_grid_thw = []            
+            cur_vision_grid_thw = []            
             cur_text = []
+
+            if system_prompt is None:
+                system_prompt = SYSTEM_MESSAGE
 
             if system_prompt is None:
                 system_prompt = SYSTEM_MESSAGE
@@ -76,9 +80,7 @@ class Qwen2VLDataCollator(BaseDataCollator):
                 else:
                     cur_text.append({
                         "role": "assistant",
-                        "content": [
-                            {"type": "text", "text": text},
-                        ]
+                        "content": text
                     })
             
             # heavily borrowed from https://github.com/2U1/Qwen2-VL-Finetune
@@ -144,6 +146,7 @@ class Qwen2VLDataCollator(BaseDataCollator):
                 cur_input_ids = cur_input_ids[:max_len]
                 cur_labels = cur_labels[:max_len]
 
+
             assert cur_input_ids.shape == cur_labels.shape, "Input and label shapes do not match"
             
             cur_input_ids = cur_input_ids.unsqueeze(0)
@@ -182,16 +185,31 @@ class Qwen2VLDataCollator(BaseDataCollator):
 
         # sanity check
         assert total_image_tokens == count_innermost_elements(images), "Number of image tokens does not match the number of images"
+        assert total_image_tokens == count_innermost_elements(images), "Number of image tokens does not match the number of images"
 
         data_dict = dict(
             input_ids=batch_input_ids,
             labels=batch_labels,
             attention_mask=batch_input_ids.ne(self.PAD_TOKEN_ID),       
-        )
+        )  
         data_dict[pixel_key] = batch_pixel_values
         data_dict[grid_key] = batch_vision_grid_thw
         
         return data_dict
+    
+
+def count_innermost_elements(nested_list):
+    if not isinstance(nested_list, list):
+        return 1
+    return sum(count_innermost_elements(item) for item in nested_list)
+
+
+def count_innermost_elements(nested_list):
+    # 如果当前元素不是列表，说明是最内层元素，返回 1
+    if not isinstance(nested_list, list):
+        return 1
+    # 如果是列表，递归统计所有子列表的元素数量
+    return sum(count_innermost_elements(item) for item in nested_list)
 
 def count_innermost_elements(nested_list):
     # 如果当前元素不是列表，说明是最内层元素，返回 1
@@ -207,6 +225,7 @@ def _findall(token_list: torch.Tensor, token: int) -> torch.Tensor:
     indices = torch.where(mask)[0]
 
     return indices
+
 
 
 def replace_image_tokens(input_string, is_video=False):

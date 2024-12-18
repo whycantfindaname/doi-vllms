@@ -1,6 +1,6 @@
 from typing import Tuple
 
-from transformers import AutoConfig, AutoProcessor, Qwen2VLForConditionalGeneration, PreTrainedTokenizer
+from transformers import AutoProcessor, Qwen2VLForConditionalGeneration, PreTrainedTokenizer, AutoConfig
 
 from . import register_loader, rank0_print
 from .base import BaseModelLoader
@@ -28,7 +28,8 @@ class Qwen2VLModelLoader(BaseModelLoader):
             model.config.hidden_size = model.config.hidden_size # useful for deepspeed
         else:
             model = None
+
+        processor = AutoProcessor.from_pretrained(self.model_local_path)
+        tokenizer = processor.tokenizer
         config = AutoConfig.from_pretrained(self.model_local_path)
-        processor = AutoProcessor.from_pretrained(self.model_local_path, min_pixels=min_pixels, max_pixels=max_pixels)
-        tokenizer = processor.tokenizer        
         return model, tokenizer, processor, config
