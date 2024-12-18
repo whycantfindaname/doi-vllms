@@ -10,9 +10,9 @@ DISTRIBUTED_ARGS="
 # according to your own case
 # MODEL_ID=llava-onevision-7b-ov                                  # model id; pick on by running `python supported_models.py`
 # MODEL_LOCAL_PATH=../models/llava-onevision-qwen2-7b-ov-hf
-MODEL_ID=qwen2-vl-7b-instruct                                # model id; pick on by running `python supported_models.py`
-MODEL_LOCAL_PATH=../models/qwen2-vl-7b-instruct
-TRAIN_DATA_PATH=./example_data/multi_images.json  # path to the training data json file
+MODEL_ID=qwen-vl-chat                                 # model id; pick on by running `python supported_models.py`
+MODEL_LOCAL_PATH=../models/Qwen-VL-Chat
+TRAIN_DATA_PATH=./example_data/single_image.json  # path to the training data json file
 EVAL_DATA_PATH=./example_data/celeba_image_eval.json    # path to the evaluation data json file (optional)
 IMAGE_FOLDER=./example_data/images                     # path to the image root folder; if provided, the image paths in the json should be relative
 VIDEO_FOLDER=./example_data/videos                      # path to the video root folder; if provided, the video paths in the json should be relative
@@ -29,20 +29,20 @@ LORA_ALPHA=256                                            # the lora alpha (both
 
 RUN_ID=${MODEL_ID}_lora-${USE_LORA}_qlora-${Q_LORA}-test     # a custom run id that determines the checkpoint folder and wandb run name
 
-DS_STAGE=zero3                                          # deepspeed stage; < zero2 | zero3 >
-PER_DEVICE_BATCH_SIZE=2                                 # batch size per GPU
+DS_STAGE=zero2                                          # deepspeed stage; < zero2 | zero3 >
+PER_DEVICE_BATCH_SIZE=1                                 # batch size per GPU
 GRAD_ACCUM=1                                            # gradient accumulation steps
 NUM_EPOCHS=4                                            # number of training epochs
 
 LR=2e-5                                                 # learning rate
-MODEL_MAX_LEN=8192                                       # maximum input length of the model
+MODEL_MAX_LEN=1024                                       # maximum input length of the model
 
 
 torchrun $DISTRIBUTED_ARGS train.py \
     --model_id $MODEL_ID \
     --model_local_path $MODEL_LOCAL_PATH \
     --data_path $TRAIN_DATA_PATH \
-    --eval_strategy "no" \
+    --eval_data_path $EVAL_DATA_PATH \
     --image_folder $IMAGE_FOLDER \
     --output_dir ./checkpoints/$RUN_ID \
     --report_to wandb \
@@ -54,9 +54,9 @@ torchrun $DISTRIBUTED_ARGS train.py \
     --per_device_eval_batch_size $PER_DEVICE_BATCH_SIZE \
     --gradient_accumulation_steps $GRAD_ACCUM \
     --eval_strategy "epoch" \
-    --save_strategy "steps" \
-    --save_steps 1100 \
-    --save_total_limit 2 \
+    --save_strategy "epoch" \
+    --eval_on_start True \
+    --save_total_limit 1 \
     --learning_rate ${LR} \
     --weight_decay 0. \
     --warmup_ratio 0.05 \

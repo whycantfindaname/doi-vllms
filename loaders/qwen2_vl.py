@@ -29,6 +29,6 @@ class Qwen2VLModelLoader(BaseModelLoader):
         else:
             model = None
         config = AutoConfig.from_pretrained(self.model_local_path)
-        processor = AutoProcessor.from_pretrained(self.model_hf_path, min_pixels=min_pixels, max_pixels=max_pixels)
+        processor = AutoProcessor.from_pretrained(self.model_local_path, min_pixels=min_pixels, max_pixels=max_pixels)
         tokenizer = processor.tokenizer        
         return model, tokenizer, processor, config

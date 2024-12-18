@@ -21,6 +21,8 @@ from utils import (
     find_all_linear_names,
     rank0_print,
     safe_save_model_for_hf_trainer,
+    get_peft_state_maybe_zero_3,
+    get_peft_state_non_lora_maybe_zero_3
 )
 # import debugpy
 # try:
@@ -223,7 +225,32 @@ def train():
     trainer.train()
     trainer.save_state()
 
-    safe_save_model_for_hf_trainer(trainer=trainer, output_dir=output_dir)
+    model.config.use_cache = True
+
+    if lora_args.use_lora:
+        state_dict = get_peft_state_maybe_zero_3(
+            model.named_parameters(), lora_args.lora_bias
+        )
+        non_lora_state_dict = get_peft_state_non_lora_maybe_zero_3(
+            model.named_parameters()
+        )
+        if training_args.local_rank == 0 or training_args.local_rank == -1:
+            model.config.save_pretrained(output_dir)
+            model.save_pretrained(output_dir, state_dict=state_dict)
+            if processor is not None:
+                processor.save_pretrained(output_dir)
+            if tokenizer is not None:
+                tokenizer.save_pretrained(output_dir)
+            torch.save(
+                non_lora_state_dict,
+                os.path.join(output_dir, "non_lora_trainables.bin"),
+            )
+    else:
+        safe_save_model_for_hf_trainer(
+            trainer=trainer,
+            output_dir=training_args.output_dir,
+        )
+
 
 
 if __name__ == "__main__":

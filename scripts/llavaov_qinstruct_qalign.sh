@@ -1,7 +1,11 @@
-NUM_GPUS=2
+GPUS=${GPUS:-4}
+BATCH_SIZE=${BATCH_SIZE:-128}
+PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-8}
+GRAD_ACCUM=$((BATCH_SIZE / PER_DEVICE_BATCH_SIZE / GPUS))
+
 DISTRIBUTED_ARGS="
     --nnodes=1 \
-    --nproc_per_node ${NUM_GPUS} \
+    --nproc_per_node ${GPUS} \
     --rdzv_backend c10d \
     --rdzv_endpoint localhost:0
 "
@@ -28,8 +32,6 @@ LORA_ALPHA=256                                            # the lora alpha (both
 RUN_ID=${MODEL_ID}_lora-${USE_LORA}_qlora-${Q_LORA}-qinstruct_qalign     # a custom run id that determines the checkpoint folder and wandb run name
 
 DS_STAGE=zero3                                          # deepspeed stage; < zero2 | zero3 >
-PER_DEVICE_BATCH_SIZE=32                                 # batch size per GPU
-GRAD_ACCUM=2                                            # gradient accumulation steps
 NUM_EPOCHS=1                                            # number of training epochs
 
 LR=2e-5                                                 # learning rate

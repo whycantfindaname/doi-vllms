@@ -57,7 +57,7 @@ class LazySupervisedDataset(Dataset):
         assistant_key: str = "gpt",
     ) -> None:
         super(LazySupervisedDataset, self).__init__()
-        self.list_data_dict = json.load(open(data_path, "r"))
+        self.list_data_dict = json.load(open(data_path, "r")) #
         self.image_folder = image_folder
         self.video_folder = video_folder
         self.num_frames = num_frames

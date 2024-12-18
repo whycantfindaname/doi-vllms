@@ -1,0 +1,3 @@
+python eval/score/qwen_score_fiveiqa.py --model_path checkpoints/qwen-vl-chat/qwen-vl-chat_lora-True_qlora-False-gvlmiqa-v0.1 --save_name qwen_gvlmiqav0.1
+python eval/score/llava_score.py --model_path lmms-finetune/checkpoints/llava-onevision-7b-ov/llava-onevision-7b-ov_lora-True_qlora-False-gvlmiqa-v0.1 --save_path results/gvlmiqa_bench/llava/llavaov_gvlmiqav0.1_score.json
+python eval/score/llava_score_fiveiqa.py --model_path lmms-finetune/checkpoints/llava-onevision-7b-ov/llava-onevision-7b-ov_lora-True_qlora-False-gvlmiqa-v0.1 --save_name llava_gvlmiqav0.1
