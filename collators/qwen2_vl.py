@@ -185,8 +185,7 @@ class Qwen2VLDataCollator(BaseDataCollator):
 
         # sanity check
         assert total_image_tokens == count_innermost_elements(images), "Number of image tokens does not match the number of images"
-        assert total_image_tokens == count_innermost_elements(images), "Number of image tokens does not match the number of images"
-
+        
         data_dict = dict(
             input_ids=batch_input_ids,
             labels=batch_labels,
@@ -201,21 +200,6 @@ class Qwen2VLDataCollator(BaseDataCollator):
 def count_innermost_elements(nested_list):
     if not isinstance(nested_list, list):
         return 1
-    return sum(count_innermost_elements(item) for item in nested_list)
-
-
-def count_innermost_elements(nested_list):
-    # 如果当前元素不是列表，说明是最内层元素，返回 1
-    if not isinstance(nested_list, list):
-        return 1
-    # 如果是列表，递归统计所有子列表的元素数量
-    return sum(count_innermost_elements(item) for item in nested_list)
-
-def count_innermost_elements(nested_list):
-    # 如果当前元素不是列表，说明是最内层元素，返回 1
-    if not isinstance(nested_list, list):
-        return 1
-    # 如果是列表，递归统计所有子列表的元素数量
     return sum(count_innermost_elements(item) for item in nested_list)
 
 def _findall(token_list: torch.Tensor, token: int) -> torch.Tensor:

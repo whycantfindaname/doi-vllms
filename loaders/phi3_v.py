@@ -14,7 +14,7 @@ class Phi3VModelLoader(BaseModelLoader):
             self.model_local_path, 
             **self.loading_kwargs,
         ) if load_model else None
-        processor = AutoProcessor.from_pretrained(self.model_hf_path, trust_remote_code=True)
+        processor = AutoProcessor.from_pretrained(self.model_local_path, trust_remote_code=True)
         tokenizer = processor.tokenizer
         config = AutoConfig.from_pretrained(self.model_local_path)
         return model, tokenizer, processor, config

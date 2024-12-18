@@ -14,6 +14,6 @@ class QwenVLModelLoader(BaseModelLoader):
             self.model_local_path, 
             **self.loading_kwargs,
         ) if load_model else None
-        tokenizer = AutoTokenizer.from_pretrained(self.model_hf_path, trust_remote_code=True)
+        tokenizer = AutoTokenizer.from_pretrained(self.model_local_path, trust_remote_code=True)
         config = AutoConfig.from_pretrained(self.model_local_path, trust_remote_code=True)
         return model, tokenizer, None, config

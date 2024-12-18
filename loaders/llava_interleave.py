@@ -18,7 +18,7 @@ class LLaVAInterleaveModelLoader(BaseModelLoader):
         else:
             model = None
 
-        processor = AutoProcessor.from_pretrained(self.model_hf_path)
+        processor = AutoProcessor.from_pretrained(self.model_local_path)
         tokenizer = processor.tokenizer
         config = AutoConfig.from_pretrained(self.model_local_path)
         return model, tokenizer, processor, config
