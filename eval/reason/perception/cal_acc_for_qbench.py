@@ -24,7 +24,7 @@ for item in data:
     try:
         pred_index = ord(item['pred_ans'].strip()[0]) - ord('A')
     except:
-            pred_index = ord(item['response'].strip()[0]) - ord('A')
+        pred_index = ord(item['response'].strip()[0]) - ord('A')
     try:
         pred = item['candidates'][pred_index]  # Map 'A', 'B', 'C', etc. to the correct answer
         print("Pred vs. Correct:", pred, correct)

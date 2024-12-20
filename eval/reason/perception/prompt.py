@@ -17,7 +17,7 @@ def convert_to_mcq(data):
         raise ValueError(f"Correct answer '{correct_ans}' not found in candidates.")
     
     # Format the question and options in the desired output format
-    formatted_output = f"{question}\n{options}\nAnswer with the option's letter from the given choices directly."
+    formatted_output = f"{question}\n{options}\nAnswer with a single option's letter (A, B, C, ...) from the given choices directly."
     
     return formatted_output, correct_ans_letter
 
