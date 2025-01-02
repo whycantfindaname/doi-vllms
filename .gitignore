@@ -25,4 +25,6 @@ q_align/__pycache__/
 q_bench/__pycache__/
 test/
 process/
+benchmark/
+train/
 *.txt
