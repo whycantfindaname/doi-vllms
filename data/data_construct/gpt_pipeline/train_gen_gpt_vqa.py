@@ -157,7 +157,8 @@ if __name__ == "__main__":
         vqa_data = load_json(vqa_file)
     else:
         vqa_data = []
-
+    print(len(meta_data))
+    print(len(vqa_data))
     check_flag = check(meta_data, vqa_data)
     check_duplicate(meta_data)
     dist_paths_error = []
@@ -165,7 +166,7 @@ if __name__ == "__main__":
     for idx_meta, meta_item in enumerate(meta_data[idx_meta_start:]):
         img_name = meta_item["image"]
         if img_name in [item["image"] for item in vqa_data]:
-            print(f"{img_name} has been generated, skip.")
+            # print(f"{img_name} has been generated, skip.")
             continue
         print("=" * 100)
         print(idx_meta + idx_meta_start)
@@ -178,7 +179,7 @@ if __name__ == "__main__":
             except Exception as e:
                 print(f"Error occurred while cleaning overall quality assessment for {img_name}.")
                 print(e)
-                continue
+                # continue
             print(f"Overall Quality Assessment: {overall_assess}")
             assess_query = f'[Overall Quality Assessment]\n{overall_assess}'
             

@@ -37,17 +37,19 @@ if __name__ == '__main__':
     # show_number(data)
     # with open(save_file, 'w') as f:
     #     json.dump(data, f, indent=4, ensure_ascii=False)
-    images = []
-    for item in data:
-        dist = {**item['global'], **item['local']}
-        if dist == {}:
-            images.append(item['image'])
-    print(len(images))
-    dist_file = 'data/meta_json/train/test/test_dist_info_v1.json'
-    dist_data = load_json(dist_file)
-    for dist_item in dist_data:
-        if dist_item['image'] in images:
-            dist_data.remove(dist_item)
-    with open('data/meta_json/train/test/test_dist_info_v2.json', 'w') as f:
-        json.dump(dist_data, f, indent=4, ensure_ascii=False)
+   
+   
+    # images = []
+    # for item in data:
+    #     dist = {**item['global'], **item['local']}
+    #     if dist == {}:
+    #         images.append(item['image'])
+    # print(len(images))
+    # dist_file = 'data/meta_json/train/release/test_dist_info_v1.json'
+    # dist_data = load_json(dist_file)
+    # for dist_item in dist_data:
+    #     if dist_item['image'] in images:
+    #         dist_data.remove(dist_item)
+    # with open('data/meta_json/train/test/test_dist_info_v2.json', 'w') as f:
+    #     json.dump(dist_data, f, indent=4, ensure_ascii=False)
             

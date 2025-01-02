@@ -98,12 +98,6 @@ def gpt4o(img_path, query, system_prompt, with_dist):
                     "role": "user",
                     "content": [
                         {"type": "text", "text": example_meta_input},
-                        # {
-                        #     "type": "image_url",
-                        #     "image_url": {
-                        #         "url": f"data:{example_mime_type};base64,{example_img_base64}"
-                        #         },
-                        # },
                     ]
                 },
                 {
@@ -116,12 +110,6 @@ def gpt4o(img_path, query, system_prompt, with_dist):
                     "role": "user",
                     "content": [
                         {"type": "text", "text": query},
-                        # {
-                        #     "type": "image_url",
-                        #     "image_url": {
-                        #         "url": f"data:{mime_type};base64,{img_base64}"
-                        #         },
-                        # },
                     ],
                 }
             ],

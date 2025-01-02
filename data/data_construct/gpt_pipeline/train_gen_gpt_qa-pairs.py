@@ -164,7 +164,8 @@ if __name__ == "__main__":
         qa_data = load_json(qa_file)
     else:
         qa_data = []
-
+    print(len(meta_data))
+    print(len(qa_data))
     check_flag = check(meta_data, qa_data)
     check_duplicate(meta_data)
     dist_paths_error = []

@@ -10,7 +10,6 @@ import random
 from data_utils import load_json, encode_img, conver_meta_data_to_gpt
 from collections import Counter
 
-
 OPENAI_API_KEY = "sk-tE7K8vJ9Dla5zDMx87F9EeB7372340C68067179938991e54"
 OPENAI_API_BASE = "https://api.gpt.ge/v1"
 client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_API_BASE)
@@ -18,14 +17,26 @@ client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_API_BASE)
 parser = argparse.ArgumentParser(
     description="To Prompt GPT-4 for Image Quality Assessment"
 )
-parser.add_argument("--meta_file", type=str, default='data/meta_json/benchmark/test/test_assess_v1.json')
-parser.add_argument("--vqa_file", type=str, default='data/meta_json/benchmark/test/test_dist_vqa_assess_v1.json')
+parser.add_argument("--meta_file", type=str, default='data/meta_json/benchmark-v1/release/dist_info_v1.json')
+parser.add_argument("--vqa_file", type=str, default='data/meta_json/benchmark-v1/test/test_vqa_v1.json')
 parser.add_argument("--image_folder", type=str, default='../datasets/images/gvlmiqa_bench/')
 
-
+def convert_meta_item_to_gpt(meta_item):
+    if isinstance(meta_item['distortions'], list):
+        assess_query = '[Distortion Infomation]\n'
+        for distortion in meta_item['distortions']:
+            id = distortion['id']
+            dist = distortion['distortion']
+            position = distortion['position']
+            severity = distortion['severity']
+            visual_manifestation = distortion['visual manifestation']
+            perception_impact = distortion['perception impact']
+            assess_query += f'<{id}> Distortion: {dist}, Position: {position}, Severity: {severity}, Visual Manifestation: {visual_manifestation}, Perception Impact: {perception_impact}\n'
+    return assess_query
 # Weave will track the inputs, outputs and code of this function
 @weave.op()
-def gpt4o(query, system_prompt):
+def gpt4o(img_path, query, system_prompt):
+    mime_type, img_base64 = encode_img(img_path)
     resp_format = {
     "type": "json_schema",
     "json_schema": {
@@ -45,17 +56,18 @@ def gpt4o(query, system_prompt):
                 },
                 "answer": {
                     "type": "string",
-                    "description": "The corresponding answer to the question."
+                    "description": "The corresponding answer to the question: 'Yes' or 'No'."
                 },
                 "concerns": {
-                    "type": "array",
-                    "items": {
                     "type": "string",
-                    "description": "The concerns addressed in the question, one of the following: existence, position, severity, region quality, region importance, visual manifestation, perception impact."
+                    "description": "One of the following concerns addressed in the question: existence, type, position, severity, visual manifestation, and perception impact."
+                },
+                "distortion_id":{
+                        "type": "string",
+                        "description": "The id of the significant distortion addressed in the question."
                     }
                 },
-                },
-                "required": ["question", "answer", "concerns"],
+                "required": ["question", "answer", "concerns", "distortion_id"],
                 "additionalProperties": False
             }
             }
@@ -67,7 +79,7 @@ def gpt4o(query, system_prompt):
     }
 
     resp = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-2024-11-20",
         messages=[
             {
                 "role": "system",
@@ -76,7 +88,13 @@ def gpt4o(query, system_prompt):
             {
                 "role": "user",
                 "content": [
-                    {"type": "text", "text": query}
+                    {"type": "text", "text": query},
+                    {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": f"data:{mime_type};base64,{img_base64}"
+                        }
+                    }
                 ],
             }
         ],
@@ -129,7 +147,7 @@ if __name__ == "__main__":
     check_duplicate(meta_data)
     dist_paths_error = []
     
-    for idx_meta, meta_item in enumerate(meta_data[idx_meta_start:idx_meta_end]):
+    for idx_meta, meta_item in enumerate(meta_data[idx_meta_start:]):
         img_name = meta_item["image"]
         if img_name in [item["image"] for item in vqa_data]:
             print(f"{img_name} has been generated, skip.")
@@ -139,39 +157,24 @@ if __name__ == "__main__":
         print(img_name)
         img_path = os.path.join(image_folder, img_name)
         
-        overall_assess = meta_item['assessment']['overall quality assessment']
-        assess_query = f'[Overall Quality Assessment]\n{overall_assess}'
+        assess_query = convert_meta_item_to_gpt(meta_item)
         
         system_prompt_assess_data = (
-            "You are an expert in image quality assessment. Generate multiple yes-or-no question and answer pairs based on the following overall image quality assessment provided to you.\n"
-            + " Our goal is to evaluate the AI assistant’s accuracy in assessing image quality and various types of distortions, so the questions you generate should comprehensively test its capabilities.\n"
-            + " These questions should be distortion-oriented, and for each distortion type, 7 concerns need to be considered:\n"
-            + " 1. the existence of the distortion;\n"
-            + " 2. the position of the distortion;\n"
-            + " 3. the severity of the distortion;\n"
-            + " 4. the visual manifestation of the distortion;\n"
-            + " 5. the perception impact of the distortion;\n"
-            + " 6. the quality of the affected region;\n"
-            + " 7. the importance of the affected region.\n"
-            + " The questions can either align with or distract from the provided quality assessment.\n"
-            + " The number of questions aligning with the assessment should be close to the number of those that distract from it.\n"
-            + " Answering Aligning Questions: The answer should be 'Yes.'\n"
-            + " Answering Distracting Questions: The answer should be 'No.'\n"
-            + " Distracting questions are incorrect questions that directly contradict or misinterpret the distortion information from the 7 concerns by introducing incorrect assumptions or misleading interpretations, thereby challenging the assistant's ability to distinguish between correct and incorrect interpretations of the distortion's impact."
-            + " Requirements for the Questions and Answers:\n"
-            + " 1. Do not miss any distortion type in the assessment.\n"
-            + " 2. Do not introduce unrelated terms or variations in distortion names.\n"
-            + " 3. Avoid generating questions that are essentially the same or too similar.\n"
-            + " 4. The questions should be clear, concise, and easy to understand.\n"
-            + " 5. The total number of generated questions should be less than 20.\n"
-            + " 6. For the existence concern, simply asking whether each type of distortion exists or not is enough.\n"
-            + " As you generate the questions, continually evaluate whether your question-answer pairs are comprehensive enough to thoroughly assess the assistant’s ability."
+            "You are an expert in image quality assessment. Generate multiple yes-or-no question-answer pairs based on the provided image and its associated distortion information."
+            + " The primary goal is to evaluate the AI assistant's ability to accurately identify and assess distortions." 
+            + " Your questions and answers should comprehensively test its understanding and reasoning capabilities. These questions should be distortion-oriented, and for each distortion, 6 concerns need to be considered:\n"
+            + " 1. the existence of the distortion;\n2. the type of the distortion;\n3. the position of the distortion;\n4. the severity of the distortion;\n5. the visual manifestation of the distortion;\n6. the perception impact of the distortion.\n"
+            + " The questions can align with or distract from the distortion information. The number of the questions which align with the information should be THE SAME AS the number of the questions which distract from the information.\n" 
+            + " Distracting questions are incorrect questions that directly contradict or misinterpret the distortion information from one of the 6 concerns by introducing incorrect assumptions or misleading interpretations, thereby challenging the assistant's ability to distinguish between correct and incorrect interpretations of the distortion.\n" 
+            + " Answering Aligning Questions: The answer should be 'Yes.'\nAnswering Distracting Questions: The answer should be 'No.'\n" 
+            + " Requirements for the Questions and Answers:\n1. Do not omit any distortion addressed in the provided information.\n2. Each distortion should have ONLY ONE question-answer pair.\n3. Each question-answer pair should address ONLY ONE concern of the 6 concerns.\n4. Do not introduce unrelated terms or deviate from the given distortion types.\n5. Pretend you have only seen the image and have no prior knowledge of the provided distortion information. Ensure questions are clear, general, and easy to understand. Avoid overly specific or technical phrasing.\n6. Avoid generating questions that are essentially the same or too similar.\n7. The number of question-answer pairs should be less than 5." 
+            + " As you generate the questions, continuously consider whether your question-answer pairs are comprehensive enough to evaluate the AI assistant's ability."
         )
 
 
         try:
-            print("Generating question answer pairs...")
-            content= gpt4o(assess_query, system_prompt_assess_data)
+            print("Generating vqa pairs...")
+            content= gpt4o(img_path, assess_query, system_prompt_assess_data)
             print(content)
             resp_dict = json.loads(content)
             meta_item["vqa"] = resp_dict['question_answer_pair']

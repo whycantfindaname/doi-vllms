@@ -24,4 +24,5 @@ example_data/videos/ego4d/*.mp4
 q_align/__pycache__/
 q_bench/__pycache__/
 test/
+process/
 *.txt

@@ -116,6 +116,42 @@ def show_number(data):
                 distortion_count[issue] += len(details)
     print(distortion_count)
     
+def show_processed_number(data):
+    distortion_count = defaultdict(int)
+    for item in data:
+        if isinstance(item['distortions'], list):
+            for distortion in item['distortions']:
+                distortion_count[distortion['distortion']] += 1
+        else:
+            continue
+    print(distortion_count)
+def check_repeat_images(data):
+    # 提取所有图像路径
+    image_paths = [item['image'] for item in data]
+    # 统计每个图像出现的次数
+    image_counts = {}
+    for image in image_paths:
+        image_counts[image] = image_counts.get(image, 0) + 1
+    
+    # 检查是否有重复图像
+    repeat_images = [image for image, count in image_counts.items() if count > 1]
+    if repeat_images:
+        print("Warning: There are repeat images in the data.")
+    
+    # 输出重复图像的数量
+    print("Number of repeat images:", len(repeat_images))
+    print("Repeat images:", repeat_images[0:10])
+
+    # 删除重复图像并保留第一个出现的条目
+    unique_data = []
+    seen_images = set()
+    for item in data:
+        if item['image'] not in seen_images:
+            unique_data.append(item)
+            seen_images.add(item['image'])
+    
+    return unique_data
+
 def check_sanity(data):
     for item in data:
         mos = item['mos']
