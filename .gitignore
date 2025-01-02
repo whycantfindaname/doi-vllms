@@ -27,4 +27,8 @@ test/
 process/
 benchmark/
 train/
-*.txt
+*.txt`
+
+results/
+example_data/
+example_scripts/
