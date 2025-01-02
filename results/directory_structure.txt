@@ -1,0 +1,32 @@
+.
+├── directory_structure.txt
+├── gvlmiqa_bench
+│   ├── depictqa
+│   ├── grounding_results
+│   ├── internvl2
+│   ├── llava
+│   ├── mplug-owl2
+│   ├── qwen2vl
+│   └── qwenvl
+├── q_align
+│   ├── agi
+│   ├── kadid
+│   ├── koniq
+│   ├── livec
+│   └── spaq
+├── q_bench
+│   ├── close-source
+│   ├── depictqa
+│   ├── internvl2
+│   ├── llava
+│   ├── mplug-owl2
+│   └── qwenvl
+└── q_pathway
+    ├── co-instruct.json
+    ├── internvl2.json
+    ├── llava_ov.json
+    ├── q_pathway_final.json
+    ├── qwen2vl.json
+    └── qwenvl.json
+
+23 directories, 7 files
