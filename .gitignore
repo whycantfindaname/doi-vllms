@@ -29,6 +29,5 @@ benchmark/
 train/
 *.txt`
 
-results/
 example_data/
 example_scripts/
