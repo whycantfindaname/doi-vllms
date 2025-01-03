@@ -8,9 +8,11 @@ from PIL import Image
 from torchvision.transforms.functional import InterpolationMode
 from transformers import AutoModel, AutoTokenizer
 from prompt import process_qbench
+from doi_prompt import process_benchmark_input  
 from tqdm import tqdm
 import os
-raw_data, processed_data = process_qbench()
+# raw_data, processed_data = process_qbench()
+raw_data, processed_data = process_benchmark_input()
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
 
@@ -126,6 +128,8 @@ print(tokenizer.model_max_length)
 
 generation_config = dict(max_new_tokens=512, do_sample=False)
 
+save_path = 'results/doi_bench/internvl2_5/internvl2_5_doi-bench-mcq.json'
+os.makedirs(os.path.dirname(save_path), exist_ok=True)
 for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
     # set the max number of tiles in `max_num`
     # finetune用的max_dynamic_patch是6
@@ -139,9 +143,6 @@ for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
     print(gt["pred_ans"])
     # input()
 
-save_path = 'results/q_bench/internvl2_5/internvl2_5_qbench.json'
-os.makedirs(os.path.dirname(save_path), exist_ok=True)
 with open(save_path, 'w') as f:
     json.dump(raw_data, f, indent=4, ensure_ascii=False)
-
 

@@ -1,24 +1,26 @@
 from transformers import AutoProcessor, LlavaOnevisionForConditionalGeneration
 from qwen_vl_utils import process_vision_info
 from prompt import process_qbench
-# from gvlmiqa_prompt import process_benchmark
+from doi_prompt import process_benchmark_input
 from tqdm import tqdm
 import torch
 import json
 from PIL import Image
 import os
 import argparse
-raw_data, processed_data = process_qbench()
-# raw_data, processed_data = process_benchmark()
+# raw_data, processed_data = process_qbench()
+raw_data, processed_data = process_benchmark_input()
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_path', type=str, default='../models/llava-onevision-qwen2-7b-ov-hf', help='path to the model')
 parser.add_argument('--model_base', type=str, default='../models/llava-onevision-qwen2-7b-ov-hf', help='base name of the model')
-parser.add_argument('--device', type=str, default='cuda:0', help='device to run the model')
+parser.add_argument('--device', type=str, default='cuda:1', help='device to run the model')
 parser.add_argument('--save_path', type=str, required=True, help='path to save the predicted answers')
 args = parser.parse_args()
 if os.path.exists(args.save_path):
     print(f"File {args.save_path} already exists. Exiting...")
     exit()
+else:
+    os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
 model_path = args.model_path
 # default: Load the model on the available device(s)
 model = LlavaOnevisionForConditionalGeneration.from_pretrained(

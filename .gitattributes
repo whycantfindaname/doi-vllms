@@ -4,3 +4,4 @@ data/meta_json/train-v1/release/dist_info_v1.json filter=lfs diff=lfs merge=lfs 
 data/meta_json/train-v1/release/mcq_v1.json filter=lfs diff=lfs merge=lfs -text
 data/meta_json/train-v1/release/qa_v1.json filter=lfs diff=lfs merge=lfs -text
 data/meta_json/train-v1/release/vqa_v1.json filter=lfs diff=lfs merge=lfs -text
+data/meta_json/train-v1/release/brief_assess_v1.json filter=lfs diff=lfs merge=lfs -text

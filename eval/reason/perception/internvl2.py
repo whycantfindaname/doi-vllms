@@ -1,9 +1,9 @@
 from prompt import process_qbench
 from tqdm import tqdm
 import json
-# from gvlmiqa_prompt import process_benchmark
+from doi_prompt import process_benchmark_input
 raw_data, processed_data = process_qbench()
-# raw_data, processed_data = process_benchmark()
+raw_data, processed_data = process_benchmark_input()
 import numpy as np
 import torch
 import torchvision.transforms as T
@@ -12,6 +12,7 @@ from PIL import Image
 from torchvision.transforms.functional import InterpolationMode
 from transformers import AutoModel, AutoTokenizer
 import math
+import os
 # import debugpy
 # try:
 #     # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
@@ -136,15 +137,8 @@ model = AutoModel.from_pretrained(
 print(tokenizer.model_max_length)
 
 generation_config = dict(max_new_tokens=1024, do_sample=False)
-test_image = 'example_data/images/curry.jpg'
-# load the test image and preprocess it
-pixel_values = load_image(test_image, max_num=3).to(torch.bfloat16).to(model.device)
-# single-image single-round conversation (单图单轮对话)
-question = "How would you summarize the quality of this image? Answer in a single sentence."
-response = model.chat(tokenizer, pixel_values, question, generation_config)
-print(response)
-input()
-
+save_path = 'results/doi_bench/internvl2/internvl2_doi-bench-v1.json'
+os.makedirs(os.path.dirname(save_path), exist_ok=True)
 for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
     # set the max number of tiles in `max_num`
     # finetune用的max_dynamic_patch是6
@@ -156,9 +150,8 @@ for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
     print(question)
     print(gt["correct_ans"])
     print(gt["pred_ans"])
-    input()
 
-with open('results/q_bench/internvl2/internvl2_qinstruct-qalign_484_bench.json', 'w') as f:
+with open(save_path, 'w') as f:
     json.dump(raw_data, f, indent=4, ensure_ascii=False)
 
 
