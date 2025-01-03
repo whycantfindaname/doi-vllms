@@ -18,7 +18,7 @@ client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_API_BASE)
 parser = argparse.ArgumentParser(
     description="To Prompt GPT-4 for Image Quality Assessment"
 )
-parser.add_argument("--meta_file", type=str, default='data/meta_json/train/release/assess_v1.json')
+parser.add_argument("--meta_file", type=str, default='data/meta_json/train-v1/release/assess_v1.json')
 parser.add_argument("--save_file", type=str, default='data/meta_json/train/test/test_brief_assess_v1.json')
 parser.add_argument("--image_folder", type=str, default='../datasets/images/gvlmiqa_train/')
 

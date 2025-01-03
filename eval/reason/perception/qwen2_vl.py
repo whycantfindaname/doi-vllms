@@ -1,12 +1,12 @@
 from transformers import Qwen2VLForConditionalGeneration, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
 from prompt import process_qbench
-# from gvlmiqa_prompt import process_benchmark
+from doi_prompt import process_benchmark_input
 from tqdm import tqdm
 import re
 import json
-raw_data, processed_data = process_qbench()
-# raw_data, processed_data = process_benchmark()
+# raw_data, processed_data = process_qbench()
+raw_data, processed_data = process_benchmark_input()
 import argparse
 import os
 parser = argparse.ArgumentParser()
@@ -20,6 +20,8 @@ args = parser.parse_args()
 if os.path.exists(args.save_path) and args.skip.lower() == 'yes':
     print(f"File {args.save_path} already exists. Exiting...")
     exit()
+else:
+    os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
 # default: Load the model on the available device(s)
 model_path = args.model_path
 model = Qwen2VLForConditionalGeneration.from_pretrained(

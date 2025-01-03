@@ -30,8 +30,8 @@ for item in data:
         print("Pred vs. Correct:", pred, correct)
     except:
         print(item)
-        print(pred_index, item['candidates'])
-        input()
+        # print(pred_index, item['candidates'])
+        # input()
     # Update type counts
     type_counts[t] = type_counts.get(t, 0) + 1
     type_correct[t] = type_correct.get(t, 0) + (1 if correct == pred else 0)
