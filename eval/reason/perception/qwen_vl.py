@@ -1,7 +1,7 @@
 from transformers import Qwen2VLForConditionalGeneration, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
 from prompt import process_qbench
-from gvlmiqa_prompt import process_benchmark
+from eval.reason.perception.doi_prompt import process_benchmark
 from tqdm import tqdm
 import json
 raw_data, processed_data = process_qbench()
