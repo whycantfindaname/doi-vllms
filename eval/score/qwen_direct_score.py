@@ -35,7 +35,7 @@ levels = [
     " acceptable",
 ]
 device = args.device
-scorer = QwenQAlignScorer(model_path, model_base, device=device, level=levels)
+scorer = QwenFinalTokenScorer(model_path, model_base, device=device, level=levels)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)
