@@ -231,8 +231,6 @@ class QwenQAlignScorer(nn.Module):
         self,
         image_path: List[str],
         sys_prompt: str = "You are an expert in image quality assessment.",
-        bbox_list=None,
-        dist_list=None,
     ):
         """
         Rates the quality of a list of input images, returning a score for each image between 1 and 5.
@@ -245,27 +243,11 @@ class QwenQAlignScorer(nn.Module):
                 - A tensor containing the calculated score for each image, ranging from 1 to 5.
                 - A list of dictionaries, each containing the filename and logits for the respective image.
         """
-        prompts = []
-        if bbox_list:
-            prompts = [
-                f"<|im_start|>system\n{sys_prompt}<|im_end|>\n<|im_start|>user\nPicture: <img>{path}</img>\n{bbox}Accordingly, can you rate the quality of the image in a single sentence?<|im_end|>\n<|im_start|>assistant\nThe quality of the image is"
-                for path, bbox in zip(image_path, bbox_list)
-            ]
-        elif dist_list:
-            for path, dist in zip(image_path, dist_list):
-                if "no distortion" in dist:
-                    prompts.append(
-                        f"<|im_start|>system\n{sys_prompt}<|im_end|>\n<|im_start|>user\nPicture: <img>{path}</img>\n{dist}Accordingly, can you rate the quality of the image in a single sentence?<|im_end|>\n<|im_start|>assistant\nThe quality of the image is"
-                    )
-                else:
-                    prompts.append(
-                        f"<|im_start|>system\n{sys_prompt}<|im_end|>\n<|im_start|>user\nPicture: <img>{path}</img>\nThe image contains one or more distortions as follows: {dist} Accordingly, can you rate the quality of the image in a single sentence?<|im_end|>\n<|im_start|>assistant\nThe quality of the image is"
-                    )
-        else:
-            prompts = [
-                f"<|im_start|>system\n{sys_prompt}<|im_end|>\n<|im_start|>user\nPicture: <img>{path}</img>\nCan you rate the quality of the image in a single sentence?<|im_end|>\n<|im_start|>assistant\nThe quality of the image is"
-                for path in image_path
-            ]
+
+        prompts = [
+            f"<|im_start|>system\n{sys_prompt}<|im_end|>\n<|im_start|>user\nPicture: <img>{path}</img>\nCan you rate the quality of the image in a single sentence?<|im_end|>\n<|im_start|>assistant\nThe quality of the image is"
+            for path in image_path
+        ]
 
         # print(prompts)
         with torch.inference_mode():
@@ -298,7 +280,114 @@ class QwenQAlignScorer(nn.Module):
 
             return output_logits
 
+class QwenFinalTokenScorer(nn.Module):
+    def __init__(
+        self,
+        model_path,
+        model_base,
+        device,
+        level=[" excellent", " good", " fair", " poor", " bad"],
+        model_name=None,
+    ):
+        """
+        Initializes the QwenQAlignScorer class.
 
+        Args:
+            model_path (str): The path to the pretrained model.
+            model_base (str): The base model to be used.
+            device (torch.device): The device on which to load the model (e.g., 'cpu' or 'cuda' or 'cuda:0'). If device is "cuda", device_map will be "auto", otherwise, device_map will be device.
+            level (List[str]): A list of strings representing the quality levels for scoring. Defaults to ["excellent", "good", "fair", "poor", "bad"].
+            model_name (str, optional): The name of the model. If not provided, it will be derived from the model_path.
+
+        """
+        super().__init__()
+        model, processor, tokenizer, _ = load_pretrained_model(
+            model_path, model_base, model_name, device=device
+        )
+
+        self.tokenizer = tokenizer
+        self.model = model
+        self.level = level
+        self.preferential_ids_ = [self.tokenizer.encode(text)[0] for text in level]
+        self.cal_ids_ = [
+            self.tokenizer.encode(text)[0]
+            for text in [" excellent", " good", " fair", " poor", " bad"]
+        ]
+        self.dtype = model.dtype
+        self.device = model.device
+        self.weight_tensor = (
+            torch.Tensor([5, 4, 3, 2, 1]).to(model.device).to(torch.float32)
+        )
+        self.stop_words_ids = [[tokenizer.im_end_id], [tokenizer.im_start_id]]
+    def forward(
+        self,
+        image_path: List[str],
+        sys_prompt: str = "You are an expert in image quality assessment.",
+    ):
+        """
+        Rates the quality of a list of input images, returning a score for each image between 1 and 5.
+
+        Args:
+            image_path (List[str]): The list of file paths for input images.
+
+        Returns:
+            Tuple[torch.Tensor, List[Dict[str, Any]]]:
+                - A tensor containing the calculated score for each image, ranging from 1 to 5.
+                - A list of dictionaries, each containing the filename and logits for the respective image.
+        """
+        prompts = [
+            f"<|im_start|>system\n{sys_prompt}<|im_end|>\n<|im_start|>user\nPicture: <img>{path}</img>\nDescribe and assess the quality of this image in detail.<|im_end|>\n<|im_start|>assistant\n"
+            for path in image_path
+        ]
+
+        # print(prompts)
+        with torch.inference_mode():
+            output_logits = []
+            cal_logits = []
+            print(prompts[0])
+            for prompt, path in tqdm(zip(prompts, image_path), total=len(prompts)):
+                context_tokens = self.tokenizer.encode(prompt)
+                input_ids = torch.tensor([context_tokens]).to(self.model.device)
+                outputs = self.model.generate(
+                        input_ids,
+                        stop_words_ids=self.stop_words_ids,
+                        return_dict_in_generate=True,
+                        output_logits=True
+                    )
+                logit = outputs.logits
+                seq = outputs.sequences
+                generated_ids_trimmed = [
+                    out_ids[len(in_ids) : ] for in_ids, out_ids in zip(input_ids, seq)
+                ]
+                assert len(logit) == len(generated_ids_trimmed[0]), f'logit and generated_ids_trimmed should have same length, but logit has length {len(logit)} and generated_ids_trimmed has length {len(generated_ids_trimmed[0])}'
+                # skip tokens of .<|im_end|><|endoftext|> 
+                final_token = generated_ids_trimmed[0][-4]
+                final_word = self.tokenizer.decode(final_token)
+                assert final_token in self.cal_ids_, f'final token is not in [" excellent", " good", " fair", " poor", " bad"], but is {final_word}'
+                output_logit = logit[-4][:, self.preferential_ids_].squeeze().tolist()
+                cal_logit = logit[-4][:, self.cal_ids_]
+                cal_logits.append(cal_logit)
+                logits_dict = defaultdict(
+                    float, {level: val for level, val in zip(self.level, output_logit)}
+                )
+
+                # 构建结果字典
+                output_logits.append(
+                    {"filename": os.path.basename(path), "logits": logits_dict}
+                )
+            cal_logits = torch.stack(cal_logits, 0).squeeze()
+            pred_mos_values = (
+                torch.softmax(cal_logits, -1) @ self.weight_tensor
+            ).tolist()
+            if isinstance(pred_mos_values, float):
+                pred_mos_values = [pred_mos_values]
+
+            # 将pred_mos值加入到每个输出字典中
+            for i, output in enumerate(output_logits):
+                output["pred_mos"] = pred_mos_values[i]
+
+            return output_logits
+        
 class Qwen2QAlignScorer(nn.Module):
     def __init__(
         self,
