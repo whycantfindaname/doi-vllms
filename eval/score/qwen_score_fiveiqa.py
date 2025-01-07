@@ -1,9 +1,10 @@
 import json
 import os
 
-from scorer import QwenQAlignScorer
+from scorer import QwenQAlignScorer, QwenFinalTokenScorer
 # other iqadatasets
-cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
+# cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
+cross_datasets = ["test_spaq.json"]
 data_dir =  "../datasets/val_json"
 import argparse
 # gvlmiqa bench
@@ -34,7 +35,7 @@ levels = [
     " acceptable",
 ]
 device = args.device
-scorer = QwenQAlignScorer(model_path, model_base, device=device, level=levels)
+scorer = QwenFinalTokenScorer(model_path, model_base, device=device, level=levels)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)
