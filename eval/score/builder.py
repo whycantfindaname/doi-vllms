@@ -21,7 +21,6 @@ from decord import VideoReader, cpu
 from PIL import Image
 from torchvision.transforms.functional import InterpolationMode
 import math
-from transformers.models.clip.image_processing_clip import CLIPImageProcessor
 
 
 def setup_debugger(port=9501):
@@ -46,7 +45,7 @@ def load_pretrained_model(
     model_path,
     model_base=None,
     model_name=None,
-    torch_dtype=torch.bfloat16,
+    torch_dtype=torch.float16,
     load_8bit=False,
     load_4bit=False,
     device_map="auto",
@@ -135,7 +134,7 @@ def load_pretrained_model(
                 config = AutoConfig.from_pretrained(model_base, trust_remote_code=True)
             print(f"Loading lora finetuned qwen-vl-chat model {model_name} from {model_path}...")
             model = AutoModelForCausalLM.from_pretrained(
-                model_path, low_cpu_mem_usage=True, trust_remote_code=True, **kwargs
+                model_path, low_cpu_mem_usage=True, trust_remote_code=True, fp16=True, **kwargs
             )
             print(f"Load model in {model.dtype}")
         elif "full" in model_name.lower():
@@ -157,7 +156,7 @@ def load_pretrained_model(
             tokenizer = AutoTokenizer.from_pretrained(model_base, trust_remote_code=True, use_fast=False)
             config = AutoConfig.from_pretrained(model_base, trust_remote_code=True)
             model = AutoModelForCausalLM.from_pretrained(
-                model_base, low_cpu_mem_usage=True, config=config, trust_remote_code=True, **kwargs
+                model_base, low_cpu_mem_usage=True, config=config, trust_remote_code=True, fp16=True, **kwargs
             )
             print(f"Load model in {model.dtype}")
         else:
@@ -165,7 +164,7 @@ def load_pretrained_model(
             tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True, use_fast=False)
             config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)
             model = AutoModelForCausalLM.from_pretrained(
-                model_path, low_cpu_mem_usage=True, trust_remote_code=True, **kwargs
+                model_path, low_cpu_mem_usage=True, trust_remote_code=True, fp16=True, **kwargs
             )
             print(f"Load model in {model.dtype}")
         
@@ -375,28 +374,6 @@ def split_model(model_name):
 
     return device_map
 
-def tokenizer_image_token(prompt, tokenizer, image_token_index=-200, return_tensors=None):
-    prompt_chunks = [tokenizer(chunk).input_ids if len(chunk) > 0 else [] for chunk in prompt.split("<|image|>")]
-    # print(prompt_chunks)
-
-    def insert_separator(X, sep):
-        return [ele for sublist in zip(X, [sep]*len(X)) for ele in sublist][:-1]
-
-    input_ids = []
-    offset = 0
-    if len(prompt_chunks) > 0 and len(prompt_chunks[0]) > 0 and prompt_chunks[0][0] == tokenizer.bos_token_id:
-        offset = 1
-        input_ids.append(prompt_chunks[0][0])
-    for x in insert_separator(prompt_chunks, [image_token_index] * (offset + 1)):
-        input_ids.extend(x[offset:])
-
-    if return_tensors is not None:
-        if return_tensors == 'pt':
-            return torch.tensor(input_ids, dtype=torch.long)
-        raise ValueError(f'Unsupported tensor type: {return_tensors}')
-    return input_ids
-
-
 if __name__ == "__main__":
     # # load original model
     # model_path = "../models/qwen2-vl-7b-instruct"
@@ -408,5 +385,3 @@ if __name__ == "__main__":
     model_path = "checkpoints/qwen2-vl-7b-instruct_lora-True_qlora-False-gvlmiqa-v0.2-score"
     model_base = "../models/qwen2-vl-7b-instruct"
     model, processor, tokenizer, config = load_pretrained_model(model_path, model_base=model_base, device="cuda:1")
-    
-    

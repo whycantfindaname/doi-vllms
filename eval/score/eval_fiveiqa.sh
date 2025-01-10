@@ -75,7 +75,7 @@ if [[ "$MODEL_NAME" == "qwen2-vl" ]]; then
 fi
 
 # qwen-vl
-origin_qwen_pred=qwen_vl_score_val.json
+origin_qwen_pred=qwenvl_direct_score.json
 finetune_qwen_pred=qwen_onetask_gvlmiqatrain_score.json
 if [[ "$MODEL_NAME" == "qwen-vl" ]]; then
     for dataset in "${cross_datasets[@]}"; do
