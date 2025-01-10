@@ -1,10 +1,9 @@
 import json
 import os
 
-from scorer import Qwen2FinalTokenScorer
+from scorer import Qwen2COTScorer
 # other iqadatasets
-cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
-cross_datasets = ["test_spaq.json"]
+cross_datasets = ["agi.json", "test_koniq.json", "test_spaq.json", "livec.json"]
 data_dir =  "../datasets/val_json"
 import argparse
 # gvlmiqa bench
@@ -35,7 +34,7 @@ levels = [
     " acceptable",
 ]
 device = "cuda"
-scorer = Qwen2FinalTokenScorer(model_path, model_base, device=device, level=levels, use_custom_processor=False)
+scorer = Qwen2COTScorer(model_path, model_base, device=device, level=levels, use_custom_processor=False)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)

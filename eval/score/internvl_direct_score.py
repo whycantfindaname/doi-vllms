@@ -1,9 +1,18 @@
 import json
 import os
 
-from scorer import InternVL2QAlignScorer
+from scorer import InternVLQAlignScorer
+import debugpy
+# try:
+#     # 5678 is the default attach port in the VS Code debug configurations. Unless a host and port are specified, host defaults to 127.0.0.1
+#     debugpy.listen(("localhost", 9501))
+#     print("Waiting for debugger attach")
+#     debugpy.wait_for_client()
+# except Exception:
+#     pass
+
 # other iqadatasets
-cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
+cross_datasets = ["agi.json", "test_koniq.json", "test_spaq.json", "livec.json"]
 data_dir =  "../datasets/val_json"
 import argparse
 # gvlmiqa bench
@@ -16,7 +25,7 @@ args = parser.parse_args()
 
 model_path = args.model_path
 model_base = args.model_base
-model_name = 'internvl2'
+model_name = os.path.basename(model_path)
 levels = [
     " excellent",
     " good",
@@ -32,7 +41,7 @@ levels = [
     " medium",
     " acceptable",
 ]
-scorer = InternVL2QAlignScorer(model_path, model_base, model_name=model_name, level=levels)
+scorer = InternVLQAlignScorer(model_path, model_base, model_name=model_name, level=levels)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)

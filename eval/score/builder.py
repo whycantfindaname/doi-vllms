@@ -134,8 +134,8 @@ def load_pretrained_model(
                 config = AutoConfig.from_pretrained(model_base, trust_remote_code=True)
             print(f"Loading lora finetuned qwen-vl-chat model {model_name} from {model_path}...")
             model = AutoModelForCausalLM.from_pretrained(
-                model_path, low_cpu_mem_usage=True, trust_remote_code=True, fp16=True, **kwargs
-            )
+                model_path, low_cpu_mem_usage=True, trust_remote_code=True,  **kwargs
+            ).to(torch.float16)
             print(f"Load model in {model.dtype}")
         elif "full" in model_name.lower():
             print("Loading full finetuned qwen-vl-chat...")
@@ -149,23 +149,23 @@ def load_pretrained_model(
             )
             model = AutoModelForCausalLM.from_pretrained(
                 model_path, low_cpu_mem_usage=True, trust_remote_code=True, **kwargs
-            )
+            ).to(torch.float16)
             print(f"Load model in {model.dtype}")
         elif model_base:
             print(f"Loading qwen-vl-chat from base model {model_base}...")
             tokenizer = AutoTokenizer.from_pretrained(model_base, trust_remote_code=True, use_fast=False)
             config = AutoConfig.from_pretrained(model_base, trust_remote_code=True)
             model = AutoModelForCausalLM.from_pretrained(
-                model_base, low_cpu_mem_usage=True, config=config, trust_remote_code=True, fp16=True, **kwargs
-            )
+                model_base, low_cpu_mem_usage=True, config=config, trust_remote_code=True, **kwargs
+            ).to(torch.float16)
             print(f"Load model in {model.dtype}")
         else:
             print(f"Loading model from {model_path}")
             tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True, use_fast=False)
             config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)
             model = AutoModelForCausalLM.from_pretrained(
-                model_path, low_cpu_mem_usage=True, trust_remote_code=True, fp16=True, **kwargs
-            )
+                model_path, low_cpu_mem_usage=True, trust_remote_code=True,  **kwargs
+            ).to(torch.float16)
             print(f"Load model in {model.dtype}")
         
         return model, None, tokenizer, config
@@ -217,15 +217,33 @@ def load_pretrained_model(
 
         return model, processor, tokenizer, config
     
-    elif "internvl2" in model_name.lower():
+    elif "internvl2" in model_name.lower() and "internvl2_5" not in model_name.lower():
         # Load InternVL2 model
         print(f"Loading internvl2 model from {model_path}...")
         processor, tokenizer, config = None, None, None
-        device_map = split_model('InternVL2-8B')
+        device_map = split_model_internvl2('InternVL2-8B')
         tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True, use_fast=False)
         model = AutoModel.from_pretrained(
             model_path,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
+            low_cpu_mem_usage=True,
+            use_flash_attn=False,
+            trust_remote_code=True,
+            device_map=device_map).eval()
+        config = AutoConfig.from_pretrained(model_path, trust_remote_code=True)
+        print(f"Load model in {model.dtype}")
+        print(f"Load model to {model.hf_device_map}")
+        return model, processor, tokenizer, config
+    
+    elif "internvl2_5" in model_name.lower():
+        # Load InternVL2 model
+        print(f"Loading internvl2_5 model from {model_path}...")
+        processor, tokenizer, config = None, None, None
+        device_map = split_model_internvl2_5('InternVL2_5-8B')
+        tokenizer = AutoTokenizer.from_pretrained(model_path, trust_remote_code=True, use_fast=False)
+        model = AutoModel.from_pretrained(
+            model_path,
+            torch_dtype=torch.float16,
             low_cpu_mem_usage=True,
             use_flash_attn=False,
             trust_remote_code=True,
@@ -340,7 +358,7 @@ def dynamic_preprocess(image, min_num=1, max_num=12, image_size=448, use_thumbna
         processed_images.append(thumbnail_img)
     return processed_images
 
-def internvl2_load_image(image_file, input_size=448, max_num=12):
+def internvl_load_image(image_file, input_size=448, max_num=12):
     image = Image.open(image_file).convert('RGB')
     transform = build_transform(input_size=input_size)
     images = dynamic_preprocess(image, image_size=input_size, use_thumbnail=True, max_num=max_num)
@@ -348,12 +366,38 @@ def internvl2_load_image(image_file, input_size=448, max_num=12):
     pixel_values = torch.stack(pixel_values)
     return pixel_values
 
-def split_model(model_name):
+def split_model_internvl2(model_name):
     device_map = {}
     world_size = torch.cuda.device_count()
     num_layers = {
         'InternVL2-1B': 24, 'InternVL2-2B': 24, 'InternVL2-4B': 32, 'InternVL2-8B': 32,
         'InternVL2-26B': 48, 'InternVL2-40B': 60, 'InternVL2-Llama3-76B': 80}[model_name]
+    # Since the first GPU will be used for ViT, treat it as half a GPU.
+    num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
+    num_layers_per_gpu = [num_layers_per_gpu] * world_size
+    num_layers_per_gpu[0] = math.ceil(num_layers_per_gpu[0] * 0.5)
+    layer_cnt = 0
+    for i, num_layer in enumerate(num_layers_per_gpu):
+        for j in range(num_layer):
+            device_map[f'language_model.model.layers.{layer_cnt}'] = i
+            layer_cnt += 1
+    device_map['vision_model'] = 0
+    device_map['mlp1'] = 0
+    device_map['language_model.model.tok_embeddings'] = 0
+    device_map['language_model.model.embed_tokens'] = 0
+    device_map['language_model.output'] = 0
+    device_map['language_model.model.norm'] = 0
+    device_map['language_model.lm_head'] = 0
+    device_map[f'language_model.model.layers.{num_layers - 1}'] = 0
+
+    return device_map
+
+def split_model_internvl2_5(model_name):
+    device_map = {}
+    world_size = torch.cuda.device_count()
+    num_layers = {
+        'InternVL2_5-1B': 24, 'InternVL2_5-2B': 24, 'InternVL2_5-4B': 36, 'InternVL2_5-8B': 32,
+        'InternVL2_5-26B': 48, 'InternVL2_5-38B': 64, 'InternVL2_5-78B': 80}[model_name]
     # Since the first GPU will be used for ViT, treat it as half a GPU.
     num_layers_per_gpu = math.ceil(num_layers / (world_size - 0.5))
     num_layers_per_gpu = [num_layers_per_gpu] * world_size

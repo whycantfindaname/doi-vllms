@@ -5,7 +5,7 @@ from collections import defaultdict
 import torch
 import torch.nn as nn
 from builder import (
-    internvl2_load_image,
+    internvl_load_image,
     load_image,
     load_pretrained_model,
 )
@@ -292,8 +292,8 @@ class LLaVACOTScorer(nn.Module):
     def forward(
         self,
         image_path: List[str],
-        sys_prompt: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the image provided.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content in one sentence.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'.",
-        query: str = "Assess the overall quality of the image in detail."
+        sys_prompt: str = "You are a helpful assistant.",
+        query: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the provided image.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'."
     ):
         """
         Rates the quality of a list of input images, returning a score for each image between 1 and 5.
@@ -503,7 +503,7 @@ class QwenQAlignScorer(nn.Module):
 
             return output_logits
 
-class QwenFinalTokenScorer(nn.Module):
+class QwenCOTScorer(nn.Module):
     def __init__(
         self,
         model_path,
@@ -551,8 +551,8 @@ class QwenFinalTokenScorer(nn.Module):
     def forward(
         self,
         image_path: List[str],
-        sys_prompt: str = "You are an expert in image quality assessment.",
-        query: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of an image.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content in one sentence.\n**Second step**, analyze the overall image quality and visual perception.\n- If there are no distortions, start your analysis with 'There is no distortion in the image.'Focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)."
+        sys_prompt: str = "You are a helpful assistant.",
+        query: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the provided image.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'."
     ):
         """
         Rates the quality of a list of input images, returning a score for each image between 1 and 5.
@@ -742,7 +742,7 @@ class Qwen2QAlignScorer(nn.Module):
 
             return output_logits
 
-class Qwen2FinalTokenScorer(nn.Module):
+class Qwen2COTScorer(nn.Module):
     def __init__(
         self,
         model_path,
@@ -800,8 +800,8 @@ class Qwen2FinalTokenScorer(nn.Module):
     def forward(
         self,
         image_path: List[str],
-        sys_prompt: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the image provided.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content in one sentence.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'.",
-        query: str = "Assess the overall quality of the image in detail."
+        sys_prompt: str = "You are a helpful assistant.",
+        query: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the provided image.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'."
     ):
         """
         Rates the quality of a list of input images, returning a score for each image between 1 and 5.
@@ -908,7 +908,7 @@ class InternVLQAlignScorer(nn.Module):
         self,
         model_path,
         model_base,
-        level=["excellent", "good", "fair", "poor", "bad"],
+        level=[" excellent", " good", " fair", " poor", " bad"],
         model_name=None,
     ):
         """
@@ -923,6 +923,7 @@ class InternVLQAlignScorer(nn.Module):
 
         """
         super().__init__()
+        model_name = os.path.basename(model_path)
         model, processor, tokenizer, config = load_pretrained_model(
             model_path,
             model_base,
@@ -946,7 +947,7 @@ class InternVLQAlignScorer(nn.Module):
         self.weight_tensor = (
             torch.Tensor([5, 4, 3, 2, 1]).to(self.dtype).to(self.device)
         )
-
+        
     def forward(
         self,
         image_path: List[str],
@@ -964,7 +965,7 @@ class InternVLQAlignScorer(nn.Module):
                 - A list of dictionaries, each containing the filename and logits for the respective image.
         """
         prompts = [
-            "Can you rate the quality of the image in a single sentence?",
+            "You are an expert in imaage quality assessment. Can you rate the quality of the image in a single sentence?",
         ] * len(image_path)
         with torch.inference_mode():  # 没有这一步会存储梯度图之类的导致OOM
             output_logits = []
@@ -972,7 +973,7 @@ class InternVLQAlignScorer(nn.Module):
             for prompt, path in tqdm(zip(prompts, image_path), total=len(prompts)):
                 print(path)
                 pixel_values = (
-                    internvl2_load_image(path, max_num=self.max_num)
+                    internvl_load_image(path, max_num=self.max_num)
                     .to(self.dtype)
                     .to(self.device)
                 )
@@ -1008,13 +1009,13 @@ class InternVLQAlignScorer(nn.Module):
                 output["pred_mos"] = pred_mos_values[i]
 
             return output_logits
+
 class InternVLCOTScorer(nn.Module):
     def __init__(
         self,
         model_path,
         model_base,
         device,
-        level=[" excellent", " good", " fair", " poor", " bad"],
         model_name=None
     ):
         """
@@ -1028,33 +1029,38 @@ class InternVLCOTScorer(nn.Module):
 
         """
         super().__init__()
-        model, processor, tokenizer, _ = load_pretrained_model(
+        model, processor, tokenizer, config = load_pretrained_model(
             model_path, model_base, model_name, device=device, torch_dtype=torch.float16
         )
+
         patterns = [" Thus, the quality of the image is", "Thus, the quality of the image is", " The quality of the image is", " the quality of the image is", " The quality of this image is", " the quality of this image is", " The overall image quality is", " the overall image quality is", " The overall quality of the image is"]
 
         patterns_ids = []
         for pattern in patterns:
-            patterns_ids.append(tokenizer.encode(pattern))
-        
+            patterns_ids.append(tokenizer.encode(pattern)[1:])
+        # ' excellent' as [1, 9202]
+        # ' good' as [1, 1811]
+        # ' fair as [1, 6776]
+        # ' poor' as [1, 7989]
+        # ' bad' as [1, 4028]
         level = [" excellent", " good", " fair", " poor", " bad"]
         levels_ids = []
         for level_item in level:
-            levels_ids.append(tokenizer.encode(level_item))
+            levels_ids.append(tokenizer.encode(level_item)[1])
         
         self.levels_ids = levels_ids
         self.patterns_ids = patterns_ids
         self.level = level
         self.tokenizer = tokenizer
+        self.max_num = config.max_dynamic_patch
         self.model = model  
         self.processor = processor
         self.cal_ids_ = [
             id_[1]
             for id_ in self.tokenizer(
-                [" excellent", " good", " fair", " poor", " bad"]
+                level
             )["input_ids"]
         ]
-        self.preferential_ids_ = [id_[1] for id_ in self.tokenizer(level)["input_ids"]]
         self.dtype = model.dtype
         self.device = model.device
         self.weight_tensor = (
@@ -1063,8 +1069,8 @@ class InternVLCOTScorer(nn.Module):
     def forward(
         self,
         image_path: List[str],
-        sys_prompt: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the image provided.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content in one sentence.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'.",
-        query: str = "Assess the overall quality of the image in detail."
+        sys_prompt: str = None,
+        query: str = "You are an expert in image quality assessment. Your task is to assess the overall quality of the provided image.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'."
     ):
         """
         Rates the quality of a list of input images, returning a score for each image between 1 and 5.
@@ -1076,43 +1082,28 @@ class InternVLCOTScorer(nn.Module):
                 - A tensor containing the calculated score for each image, ranging from 1 to 5.
                 - A list of dictionaries, each containing the filename and logits for the respective image.
         """
-        conversation = [
-                {"role": "system", "content": [{"type": "text", "text": sys_prompt}]},
-                {
-                    "role": "user",
-                    "content": [
-                        {"type": "image"},
-                        {
-                            "type": "text",
-                            "text": query,
-                        },
-                    ],
-                }
-            ]
-        prompt = self.processor.apply_chat_template(
-            conversation, chat_template=llava_template, add_generation_prompt=True
-        )
-        prompts = [prompt] * len(image_path)
         greedy_decoding_config = dict(do_sample=False,num_beams=1,top_p=None,top_k=None, max_new_tokens=512, return_dict_in_generate=True, output_logits=True, temperature=None)
-        # print(prompts[0])
         with torch.inference_mode():
             output_logits = []
             cal_logits = []
-            print(prompts[0])
-            for prompt, path in tqdm(zip(prompts, image_path), total=len(prompts)):
-                inputs = self.processor(
-                    images=[load_image(path)], text=[prompt], return_tensors="pt", padding=True
-                ).to(self.device, self.dtype)
-                outputs = self.model.generate(
-                        **inputs,
-                        **greedy_decoding_config,
+            for path in tqdm(image_path, total=len(image_path)):
+                pixel_values = (
+                    internvl_load_image(path, max_num=self.max_num)
+                    .to(self.dtype)
+                    .to(self.device)
+                )
+                outputs = self.model.generate_for_cot_score(
+                        tokenizer=self.tokenizer,
+                        pixel_values=pixel_values,
+                        question=query,
+                        sys=sys_prompt,
+                        cot_generation_config = greedy_decoding_config,
                     )
                 logit = outputs.logits
                 seq = outputs.sequences
-                generated_ids_trimmed = [
-                    out_ids[len(in_ids) : ] for in_ids, out_ids in zip(inputs.input_ids, seq)
-                ]
+                generated_ids_trimmed = seq
                 answer = self.tokenizer.batch_decode(generated_ids_trimmed)
+                print(answer)
                 assert len(logit) == len(generated_ids_trimmed[0]), f'logit and generated_ids_trimmed should have same length, but logit has length {len(logit)} and generated_ids_trimmed has length {len(generated_ids_trimmed[0])}'
                 
                 final_token_pos = None  # Initialize as None instead of -1
@@ -1155,7 +1146,7 @@ class InternVLCOTScorer(nn.Module):
                                 
                 # assert final_token in self.cal_ids_, f'final token is not in [" excellent", " good", " fair", " poor", " bad"], but is {final_word}'
                 cal_logit = logit[final_token_pos][:, self.cal_ids_]
-                output_logit = logit[final_token_pos][:, self.preferential_ids_].squeeze().tolist()
+                output_logit = logit[final_token_pos][:, self.cal_ids_].squeeze().tolist()
                 print(cal_logit)
                 print(answer)
                 cal_logits.append(cal_logit)

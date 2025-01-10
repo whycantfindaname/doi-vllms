@@ -1,7 +1,7 @@
 import json
 import os
 
-from scorer import QwenQAlignScorer, QwenFinalTokenScorer
+from scorer import QwenQAlignScorer, QwenCOTScorer
 # other iqadatasets
 cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
 cross_datasets = ["test_spaq.json"]
@@ -35,7 +35,7 @@ levels = [
     " acceptable",
 ]
 device = args.device
-scorer = QwenFinalTokenScorer(model_path, model_base, device=device, level=levels)
+scorer = QwenCOTScorer(model_path, model_base, device=device, level=levels)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)

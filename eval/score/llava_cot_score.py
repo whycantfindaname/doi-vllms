@@ -1,10 +1,10 @@
 import json
 import os
 
-from scorer import LLaVAQAlignScorer
+from scorer import LLaVAQAlignScorer, LLaVACOTScorer
 # other iqadatasets
-cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
-cross_datasets = ["test_spaq.json"]
+cross_datasets = ["agi.json", "test_spaq.json"]
+# cross_datasets = ["livec.json", "test_koniq.json"]
 data_dir =  "../datasets/val_json"
 import argparse
 # gvlmiqa bench
@@ -35,7 +35,7 @@ levels = [
     " acceptable",
 ]
 device = args.device
-scorer = LLaVAQAlignScorer(model_path, model_base, model_name=model_name, device=device, level=levels)
+scorer = LLaVACOTScorer(model_path, model_base, model_name=model_name, device=device, level=levels)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)
@@ -66,9 +66,11 @@ for dataset in cross_datasets:
             image = not_complete[i]['img_path']
         img_list.append(os.path.join(image_dir, image))
     # 每8个图像进行一次评分
+    query = "You are an expert in image quality assessment. Your task is to assess the overall quality of the image provided.\nTo assess the image quality, you should think step by step.\n**First step**, provide a brief description of the image content in one sentence.\n**Second step**, analyze the overall image quality and visual perception.\n- If there is no distortion present in the image, focus solely on what you observe in the image and describe the image's visual aspects, such as visibility, detail discernment, clarity, brightness, lighting, composition, and texture.\n- If distortions are present, identify the distortions and briefly analyze each occurrence of every distortion type.Explain how each distortion affects the visual appearance and perception of specific objects or regions in the image.\n**Third step**, If distortions are present, identify the key distortions that have the most significant impact on the overall image quality.Provide detailed reasoning about how these key distortions affect the image's visual perception, especially regarding sharpness, clarity, and detail. Combine the analysis of key degradations and low-level attributes into a cohesive paragraph.\n**Final step**, conclude your answer with this sentence: 'Thus, the quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'."
+    sys_prompt = "You are a helpful assistant."
     for i in range(0, len(img_list), 8):
         batch = img_list[i:i + 8]  # 获取当前的8个图像
-        score = scorer(batch)
+        score = scorer(batch, sys_prompt=sys_prompt, query=query)
         output.extend(score)        # 将结果添加到输出列表
         print("Saving results to", save_path)
         with open(save_path, "w") as file:

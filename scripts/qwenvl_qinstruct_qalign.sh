@@ -1,3 +1,6 @@
+eval "$(conda shell.bash hook)"
+conda activate lmms-finetune
+
 GPUS=${GPUS:-4}
 BATCH_SIZE=${BATCH_SIZE:-128}
 PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-8}
@@ -9,13 +12,13 @@ DISTRIBUTED_ARGS="
     --rdzv_backend c10d \
     --rdzv_endpoint localhost:0
 "
-
+# transformers version should be 4.31.0
 # arguments that are very likely to be changed
 # according to your own case
 MODEL_ID=qwen-vl-chat                                 # model id; pick on by running `python supported_models.py`
 MODEL_LOCAL_PATH=../models/Qwen-VL-Chat
 TRAIN_DATA_PATH=../datasets/Q-Instruct_Q-Align/qwen_llava_qinstruct_qalign.json  # path to the training data json file
-EVAL_DATA_PATH=./example_data/celeba_image_eval.json    # path to the evaluation data json file (optional)
+EVAL_DATA_PATH=../datasets/q-bench/q_bench_eval.json  # path to the evaluation data json file (optional)
 IMAGE_FOLDER=../datasets/images                      # path to the image root folder; if provided, the image paths in the json should be relative
 VIDEO_FOLDER=./example_data/videos                      # path to the video root folder; if provided, the video paths in the json should be relative
 NUM_FRAMES=8                                            # how many frames are sampled from each video
@@ -35,16 +38,15 @@ DS_STAGE=zero3                                          # deepspeed stage; < zer
 NUM_EPOCHS=5                                            # number of training epochs
 
 LR=2e-5                                                 # learning rate
-MODEL_MAX_LEN=2048                                       # maximum input length of the model
+MODEL_MAX_LEN=1024                                       # maximum input length of the model
 
 
-torchrun $DISTRIBUTED_ARGS train.py \
+srun torchrun $DISTRIBUTED_ARGS train.py \
     --model_id $MODEL_ID \
     --model_local_path $MODEL_LOCAL_PATH \
     --data_path $TRAIN_DATA_PATH \
-    --eval_strategy "no" \
     --image_folder $IMAGE_FOLDER \
-    --output_dir ./checkpoints/$RUN_ID \
+    --output_dir ./checkpoints/$MODEL_ID/$RUN_ID \
     --report_to wandb \
     --run_name $RUN_ID \
     --deepspeed ./ds_configs/${DS_STAGE}.json \
@@ -53,7 +55,6 @@ torchrun $DISTRIBUTED_ARGS train.py \
     --per_device_train_batch_size $PER_DEVICE_BATCH_SIZE \
     --per_device_eval_batch_size $PER_DEVICE_BATCH_SIZE \
     --gradient_accumulation_steps $GRAD_ACCUM \
-    --eval_strategy "epoch" \
     --save_strategy "steps" \
     --save_steps 1100 \
     --save_total_limit 2 \
@@ -73,4 +74,4 @@ torchrun $DISTRIBUTED_ARGS train.py \
     --q_lora $Q_LORA \
     --lora_r $LORA_R \
     --lora_alpha $LORA_ALPHA
-    
+

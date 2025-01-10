@@ -8,7 +8,13 @@
 #SBATCH --output=/home/u2114040/lmms-finetune/output/%j.no_bbox_out.txt
 #SBATCH --error=/home/u2114040/lmms-finetune/output/%j.no_bbox_err.txt
 
-GPUS=${GPUS:-2}
+OUTPUT_DIR="/home/u2114040/lmms-finetune/output"
+if [ ! -d "$OUTPUT_DIR" ]; then
+    mkdir -p "$OUTPUT_DIR"
+    echo "Created output directory: $OUTPUT_DIR"
+fi
+
+GPUS=${GPUS:-8}
 BATCH_SIZE=${BATCH_SIZE:-128}
 PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-1}
 # GRAD_ACCUM=$((BATCH_SIZE / PER_DEVICE_BATCH_SIZE / GPUS))
@@ -46,7 +52,7 @@ NUM_EPOCHS=5                                            # number of training epo
 
 LR=0.00002                                                 # learning rate
 LR=$(echo "scale=10; $LR / ($BATCH_SIZE / $PER_DEVICE_BATCH_SIZE / $GPUS)" | bc)
-MODEL_MAX_LEN=1024                                        # maximum input length of the model
+MODEL_MAX_LEN=3584                                        # maximum input length of the model
 
 
 torchrun $DISTRIBUTED_ARGS train.py \

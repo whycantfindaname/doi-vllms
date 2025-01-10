@@ -1,8 +1,8 @@
-GPUS=${GPUS:-4}
+GPUS=${GPUS:-6}
 BATCH_SIZE=${BATCH_SIZE:-128}
-PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-8}
-GRAD_ACCUM=$((BATCH_SIZE / PER_DEVICE_BATCH_SIZE / GPUS))
-
+PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-2}
+# GRAD_ACCUM=$((BATCH_SIZE / PER_DEVICE_BATCH_SIZE / GPUS))
+GRAD_ACCUM=1
 DISTRIBUTED_ARGS="
     --nnodes=1 \
     --nproc_per_node ${GPUS} \
@@ -14,10 +14,10 @@ DISTRIBUTED_ARGS="
 # according to your own case
 MODEL_ID=qwen2-vl-7b-instruct                                # model id; pick on by running `python supported_models.py`
 MODEL_LOCAL_PATH=../models/qwen2-vl-7b-instruct
-TRAIN_DATA_PATH=../datasets/train_json/qwen_11656_train.json  # path to the training data json file
+TRAIN_DATA_PATH=../datasets/train_json/koniq_spaq_kadid_train.json  # path to the training data json file
 EVAL_DATA_PATH=../datasets/val_json/qwen_11656_val.json  # path to the evaluation data json file (optional)
-IMAGE_FOLDER=../datasets/images                     # path to the image root folder; if provided, the image paths in the json should be relative
-VIDEO_FOLDER=../example_data/videos                      # path to the video root folder; if provided, the video paths in the json should be relative
+IMAGE_FOLDER=../datasets/images                      # path to the image root folder; if provided, the image paths in the json should be relative
+VIDEO_FOLDER=./example_data/videos                      # path to the video root folder; if provided, the video paths in the json should be relative
 NUM_FRAMES=8                                            # how many frames are sampled from each video
 
 TRAIN_VISION_ENCODER=False                              # whether train the vision encoder
@@ -29,23 +29,24 @@ Q_LORA=False                                            # whether use q-lora for
 LORA_R=128                                                # the lora rank (both llm and vision encoder)
 LORA_ALPHA=256                                            # the lora alpha (both llm and vision encoder)
 
-RUN_ID=${MODEL_ID}_lora-${USE_LORA}_qlora-${Q_LORA}-gvlmiqa-v0.1-ground     # a custom run id that determines the checkpoint folder and wandb run name
+RUN_ID=${MODEL_ID}_lora-${USE_LORA}_qlora-${Q_LORA}-qalign-score    # a custom run id that determines the checkpoint folder and wandb run name
 
 DS_STAGE=zero3                                          # deepspeed stage; < zero2 | zero3 >
-NUM_EPOCHS=5                                            # number of training epochs
+NUM_EPOCHS=3                                            # number of training epochs
 
-
-LR=2e-5                                                 # learning rate
-MODEL_MAX_LEN=3072                                        # maximum input length of the model
+LR=0.00001                                                # learning rate
+LR=$(echo "scale=10; $LR / ($BATCH_SIZE / $PER_DEVICE_BATCH_SIZE / $GPUS)" | bc)
+echo "Used LR: $LR"
+MODEL_MAX_LEN=5120                                      # maximum input length of the model
 
 
 torchrun $DISTRIBUTED_ARGS train.py \
     --model_id $MODEL_ID \
     --model_local_path $MODEL_LOCAL_PATH \
     --data_path $TRAIN_DATA_PATH \
-    --eval_data_path $EVAL_DATA_PATH \
+    --eval_strategy "no" \
     --image_folder $IMAGE_FOLDER \
-    --output_dir ./checkpoints/$RUN_ID \
+    --output_dir ./checkpoints/$MODEL_ID/$RUN_ID \
     --report_to wandb \
     --run_name $RUN_ID \
     --deepspeed ./ds_configs/${DS_STAGE}.json \
@@ -54,9 +55,8 @@ torchrun $DISTRIBUTED_ARGS train.py \
     --per_device_train_batch_size $PER_DEVICE_BATCH_SIZE \
     --per_device_eval_batch_size $PER_DEVICE_BATCH_SIZE \
     --gradient_accumulation_steps $GRAD_ACCUM \
-    --eval_strategy "epoch" \
     --save_strategy "epoch" \
-    --save_total_limit 3 \
+    --save_total_limit 1 \
     --learning_rate ${LR} \
     --weight_decay 0. \
     --warmup_ratio 0.03 \
@@ -74,5 +74,3 @@ torchrun $DISTRIBUTED_ARGS train.py \
     --lora_r $LORA_R \
     --lora_alpha $LORA_ALPHA
     
-#    --adam_beta1 0.9 \
-#    --adam_beta2 0.95 \

@@ -1,9 +1,9 @@
 import json
 import os
 
-from scorer import InternVL2QAlignScorer
+from scorer import InternVLQAlignScorer
 # other iqadatasets
-cross_datasets = ["agi.json", "test_kadid.json", "test_koniq.json", "test_spaq.json", "livec.json"]
+cross_datasets = ["agi.json", "test_koniq.json", "test_spaq.json", "livec.json"]
 data_dir =  "../datasets/val_json"
 import argparse
 # gvlmiqa bench
@@ -16,7 +16,6 @@ args = parser.parse_args()
 
 model_path = args.model_path
 model_base = args.model_base
-model_name = 'internvl2'
 levels = [
     " excellent",
     " good",
@@ -32,7 +31,7 @@ levels = [
     " medium",
     " acceptable",
 ]
-scorer = InternVL2QAlignScorer(model_path, model_base, model_name=model_name, level=levels)
+scorer = InternVLQAlignScorer(model_path, model_base, level=levels)
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)

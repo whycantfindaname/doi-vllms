@@ -1,0 +1,1522 @@
+[
+    {
+        "filename": "AttnGAN_normal_000.jpg",
+        "logits": {
+            " excellent": 28.65625,
+            " good": 29.78125,
+            " fair": 29.640625,
+            " poor": 31.625,
+            " bad": 22.953125,
+            " high": 30.265625,
+            " low": 33.03125,
+            " fine": 24.796875,
+            " moderate": 31.203125,
+            " decent": 28.703125,
+            " average": 27.796875,
+            " medium": 27.34375,
+            " acceptable": 28.265625
+        },
+        "pred_mos": 2.451171875
+    },
+    {
+        "filename": "AttnGAN_normal_001.jpg",
+        "logits": {
+            " excellent": 26.890625,
+            " good": 26.3125,
+            " fair": 25.8125,
+            " poor": 33.0,
+            " bad": 22.953125,
+            " high": 28.140625,
+            " low": 33.1875,
+            " fine": 21.640625,
+            " moderate": 27.34375,
+            " decent": 24.265625,
+            " average": 23.828125,
+            " medium": 23.890625,
+            " acceptable": 23.078125
+        },
+        "pred_mos": 2.009765625
+    },
+    {
+        "filename": "AttnGAN_normal_002.jpg",
+        "logits": {
+            " excellent": 28.25,
+            " good": 26.546875,
+            " fair": 26.859375,
+            " poor": 38.15625,
+            " bad": 27.25,
+            " high": 29.703125,
+            " low": 37.28125,
+            " fine": 23.203125,
+            " moderate": 27.9375,
+            " decent": 23.859375,
+            " average": 24.546875,
+            " medium": 25.234375,
+            " acceptable": 24.40625
+        },
+        "pred_mos": 2.0
+    },
+    {
+        "filename": "AttnGAN_normal_003.jpg",
+        "logits": {
+            " excellent": 27.1875,
+            " good": 26.90625,
+            " fair": 25.703125,
+            " poor": 32.6875,
+            " bad": 22.96875,
+            " high": 27.8125,
+            " low": 33.34375,
+            " fine": 21.984375,
+            " moderate": 27.515625,
+            " decent": 24.40625,
+            " average": 24.453125,
+            " medium": 23.96875,
+            " acceptable": 23.984375
+        },
+        "pred_mos": 2.01953125
+    },
+    {
+        "filename": "AttnGAN_normal_004.jpg",
+        "logits": {
+            " excellent": 26.515625,
+            " good": 26.359375,
+            " fair": 26.390625,
+            " poor": 33.625,
+            " bad": 23.203125,
+            " high": 28.109375,
+            " low": 33.8125,
+            " fine": 21.625,
+            " moderate": 28.171875,
+            " decent": 24.59375,
+            " average": 24.078125,
+            " medium": 24.40625,
+            " acceptable": 23.390625
+        },
+        "pred_mos": 2.00390625
+    },
+    {
+        "filename": "AttnGAN_normal_005.jpg",
+        "logits": {
+            " excellent": 27.5625,
+            " good": 29.1875,
+            " fair": 29.53125,
+            " poor": 34.125,
+            " bad": 23.6875,
+            " high": 29.203125,
+            " low": 35.03125,
+            " fine": 24.15625,
+            " moderate": 31.390625,
+            " decent": 28.0625,
+            " average": 26.96875,
+            " medium": 26.734375,
+            " acceptable": 27.21875
+        },
+        "pred_mos": 2.02734375
+    },
+    {
+        "filename": "AttnGAN_normal_006.jpg",
+        "logits": {
+            " excellent": 27.953125,
+            " good": 28.484375,
+            " fair": 26.9375,
+            " poor": 32.3125,
+            " bad": 23.140625,
+            " high": 29.234375,
+            " low": 33.78125,
+            " fine": 23.03125,
+            " moderate": 29.109375,
+            " decent": 26.421875,
+            " average": 25.890625,
+            " medium": 25.140625,
+            " acceptable": 25.71875
+        },
+        "pred_mos": 2.083984375
+    },
+    {
+        "filename": "AttnGAN_normal_007.jpg",
+        "logits": {
+            " excellent": 26.96875,
+            " good": 26.5,
+            " fair": 26.796875,
+            " poor": 35.21875,
+            " bad": 24.765625,
+            " high": 29.203125,
+            " low": 35.0625,
+            " fine": 22.65625,
+            " moderate": 28.203125,
+            " decent": 24.03125,
+            " average": 24.09375,
+            " medium": 24.75,
+            " acceptable": 23.65625
+        },
+        "pred_mos": 2.001953125
+    },
+    {
+        "filename": "AttnGAN_normal_008.jpg",
+        "logits": {
+            " excellent": 27.609375,
+            " good": 27.6875,
+            " fair": 26.671875,
+            " poor": 34.03125,
+            " bad": 24.421875,
+            " high": 28.78125,
+            " low": 34.3125,
+            " fine": 22.828125,
+            " moderate": 28.671875,
+            " decent": 25.3125,
+            " average": 25.28125,
+            " medium": 24.828125,
+            " acceptable": 24.765625
+        },
+        "pred_mos": 2.009765625
+    },
+    {
+        "filename": "AttnGAN_normal_009.jpg",
+        "logits": {
+            " excellent": 27.953125,
+            " good": 27.9375,
+            " fair": 27.125,
+            " poor": 29.0625,
+            " bad": 20.84375,
+            " high": 30.03125,
+            " low": 31.21875,
+            " fine": 23.421875,
+            " moderate": 28.578125,
+            " decent": 26.1875,
+            " average": 26.265625,
+            " medium": 25.640625,
+            " acceptable": 25.390625
+        },
+        "pred_mos": 2.9921875
+    },
+    {
+        "filename": "AttnGAN_normal_010.jpg",
+        "logits": {
+            " excellent": 27.6875,
+            " good": 27.125,
+            " fair": 27.140625,
+            " poor": 34.1875,
+            " bad": 24.09375,
+            " high": 29.015625,
+            " low": 34.25,
+            " fine": 22.171875,
+            " moderate": 28.765625,
+            " decent": 25.046875,
+            " average": 24.375,
+            " medium": 25.140625,
+            " acceptable": 24.21875
+        },
+        "pred_mos": 2.005859375
+    },
+    {
+        "filename": "AttnGAN_normal_011.jpg",
+        "logits": {
+            " excellent": 29.734375,
+            " good": 29.78125,
+            " fair": 27.46875,
+            " poor": 29.953125,
+            " bad": 21.3125,
+            " high": 30.75,
+            " low": 32.125,
+            " fine": 24.234375,
+            " moderate": 29.8125,
+            " decent": 27.4375,
+            " average": 26.140625,
+            " medium": 25.53125,
+            " acceptable": 26.015625
+        },
+        "pred_mos": 3.53125
+    },
+    {
+        "filename": "AttnGAN_normal_012.jpg",
+        "logits": {
+            " excellent": 28.015625,
+            " good": 27.9375,
+            " fair": 27.421875,
+            " poor": 30.671875,
+            " bad": 21.921875,
+            " high": 29.640625,
+            " low": 31.984375,
+            " fine": 23.109375,
+            " moderate": 29.1875,
+            " decent": 26.15625,
+            " average": 25.703125,
+            " medium": 25.609375,
+            " acceptable": 25.53125
+        },
+        "pred_mos": 2.322265625
+    },
+    {
+        "filename": "AttnGAN_normal_013.jpg",
+        "logits": {
+            " excellent": 30.625,
+            " good": 30.96875,
+            " fair": 29.453125,
+            " poor": 32.6875,
+            " bad": 24.03125,
+            " high": 32.3125,
+            " low": 34.3125,
+            " fine": 26.078125,
+            " moderate": 31.671875,
+            " decent": 29.390625,
+            " average": 28.734375,
+            " medium": 27.0,
+            " acceptable": 28.390625
+        },
+        "pred_mos": 2.580078125
+    },
+    {
+        "filename": "AttnGAN_normal_014.jpg",
+        "logits": {
+            " excellent": 28.5,
+            " good": 28.5,
+            " fair": 27.375,
+            " poor": 31.609375,
+            " bad": 22.390625,
+            " high": 29.625,
+            " low": 32.8125,
+            " fine": 24.015625,
+            " moderate": 28.9375,
+            " decent": 26.59375,
+            " average": 25.953125,
+            " medium": 24.78125,
+            " acceptable": 26.515625
+        },
+        "pred_mos": 2.21484375
+    },
+    {
+        "filename": "AttnGAN_normal_015.jpg",
+        "logits": {
+            " excellent": 26.078125,
+            " good": 24.953125,
+            " fair": 25.828125,
+            " poor": 34.28125,
+            " bad": 24.234375,
+            " high": 27.578125,
+            " low": 33.375,
+            " fine": 21.25,
+            " moderate": 26.359375,
+            " decent": 22.75,
+            " average": 22.859375,
+            " medium": 23.484375,
+            " acceptable": 22.234375
+        },
+        "pred_mos": 2.001953125
+    },
+    {
+        "filename": "AttnGAN_normal_016.jpg",
+        "logits": {
+            " excellent": 27.28125,
+            " good": 25.65625,
+            " fair": 25.359375,
+            " poor": 31.15625,
+            " bad": 22.046875,
+            " high": 28.515625,
+            " low": 31.484375,
+            " fine": 21.0,
+            " moderate": 26.828125,
+            " decent": 23.453125,
+            " average": 23.09375,
+            " medium": 23.546875,
+            " acceptable": 22.734375
+        },
+        "pred_mos": 2.0703125
+    },
+    {
+        "filename": "AttnGAN_normal_017.jpg",
+        "logits": {
+            " excellent": 26.3125,
+            " good": 26.1875,
+            " fair": 27.40625,
+            " poor": 35.78125,
+            " bad": 25.40625,
+            " high": 28.6875,
+            " low": 35.71875,
+            " fine": 22.609375,
+            " moderate": 28.703125,
+            " decent": 25.03125,
+            " average": 24.578125,
+            " medium": 25.328125,
+            " acceptable": 23.609375
+        },
+        "pred_mos": 2.0
+    },
+    {
+        "filename": "AttnGAN_normal_018.jpg",
+        "logits": {
+            " excellent": 26.875,
+            " good": 27.046875,
+            " fair": 27.734375,
+            " poor": 34.28125,
+            " bad": 24.015625,
+            " high": 28.75,
+            " low": 34.5,
+            " fine": 22.0625,
+            " moderate": 29.453125,
+            " decent": 25.171875,
+            " average": 24.765625,
+            " medium": 25.8125,
+            " acceptable": 24.203125
+        },
+        "pred_mos": 2.00390625
+    },
+    {
+        "filename": "AttnGAN_normal_019.jpg",
+        "logits": {
+            " excellent": 27.375,
+            " good": 29.65625,
+            " fair": 29.328125,
+            " poor": 30.890625,
+            " bad": 22.453125,
+            " high": 29.109375,
+            " low": 33.25,
+            " fine": 23.9375,
+            " moderate": 31.234375,
+            " decent": 28.796875,
+            " average": 27.671875,
+            " medium": 27.203125,
+            " acceptable": 27.703125
+        },
+        "pred_mos": 2.576171875
+    },
+    {
+        "filename": "AttnGAN_normal_020.jpg",
+        "logits": {
+            " excellent": 27.40625,
+            " good": 27.34375,
+            " fair": 27.03125,
+            " poor": 36.71875,
+            " bad": 26.640625,
+            " high": 29.015625,
+            " low": 36.5,
+            " fine": 23.03125,
+            " moderate": 29.015625,
+            " decent": 24.875,
+            " average": 25.203125,
+            " medium": 25.5,
+            " acceptable": 24.71875
+        },
+        "pred_mos": 2.0
+    },
+    {
+        "filename": "AttnGAN_normal_021.jpg",
+        "logits": {
+            " excellent": 26.546875,
+            " good": 26.375,
+            " fair": 26.640625,
+            " poor": 35.8125,
+            " bad": 25.125,
+            " high": 28.390625,
+            " low": 35.53125,
+            " fine": 22.171875,
+            " moderate": 28.15625,
+            " decent": 24.09375,
+            " average": 24.296875,
+            " medium": 24.5625,
+            " acceptable": 22.984375
+        },
+        "pred_mos": 2.0
+    },
+    {
+        "filename": "AttnGAN_normal_022.jpg",
+        "logits": {
+            " excellent": 28.0625,
+            " good": 29.59375,
+            " fair": 28.828125,
+            " poor": 31.640625,
+            " bad": 22.765625,
+            " high": 30.28125,
+            " low": 33.90625,
+            " fine": 24.4375,
+            " moderate": 30.75,
+            " decent": 28.515625,
+            " average": 27.921875,
+            " medium": 27.171875,
+            " acceptable": 26.96875
+        },
+        "pred_mos": 2.330078125
+    },
+    {
+        "filename": "AttnGAN_normal_023.jpg",
+        "logits": {
+            " excellent": 28.5625,
+            " good": 29.9375,
+            " fair": 29.3125,
+            " poor": 30.859375,
+            " bad": 22.234375,
+            " high": 29.515625,
+            " low": 32.625,
+            " fine": 23.796875,
+            " moderate": 30.84375,
+            " decent": 28.40625,
+            " average": 27.453125,
+            " medium": 26.296875,
+            " acceptable": 27.96875
+        },
+        "pred_mos": 2.765625
+    },
+    {
+        "filename": "AttnGAN_normal_024.jpg",
+        "logits": {
+            " excellent": 28.5625,
+            " good": 28.609375,
+            " fair": 28.203125,
+            " poor": 33.84375,
+            " bad": 23.625,
+            " high": 29.625,
+            " low": 34.34375,
+            " fine": 22.6875,
+            " moderate": 30.046875,
+            " decent": 26.84375,
+            " average": 25.203125,
+            " medium": 25.25,
+            " acceptable": 25.5625
+        },
+        "pred_mos": 2.029296875
+    },
+    {
+        "filename": "AttnGAN_normal_025.jpg",
+        "logits": {
+            " excellent": 28.484375,
+            " good": 28.578125,
+            " fair": 27.734375,
+            " poor": 30.5,
+            " bad": 21.59375,
+            " high": 29.96875,
+            " low": 32.0,
+            " fine": 23.046875,
+            " moderate": 29.671875,
+            " decent": 26.40625,
+            " average": 25.9375,
+            " medium": 26.078125,
+            " acceptable": 25.71875
+        },
+        "pred_mos": 2.5625
+    },
+    {
+        "filename": "AttnGAN_normal_026.jpg",
+        "logits": {
+            " excellent": 27.578125,
+            " good": 27.734375,
+            " fair": 27.03125,
+            " poor": 33.0625,
+            " bad": 23.046875,
+            " high": 29.28125,
+            " low": 33.6875,
+            " fine": 22.6875,
+            " moderate": 28.921875,
+            " decent": 25.53125,
+            " average": 24.953125,
+            " medium": 25.0,
+            " acceptable": 24.71875
+        },
+        "pred_mos": 2.025390625
+    },
+    {
+        "filename": "AttnGAN_normal_027.jpg",
+        "logits": {
+            " excellent": 27.015625,
+            " good": 27.09375,
+            " fair": 26.921875,
+            " poor": 35.46875,
+            " bad": 24.84375,
+            " high": 29.109375,
+            " low": 35.5,
+            " fine": 22.546875,
+            " moderate": 28.90625,
+            " decent": 24.890625,
+            " average": 24.78125,
+            " medium": 24.96875,
+            " acceptable": 24.359375
+        },
+        "pred_mos": 2.001953125
+    },
+    {
+        "filename": "AttnGAN_normal_028.jpg",
+        "logits": {
+            " excellent": 26.25,
+            " good": 28.609375,
+            " fair": 29.140625,
+            " poor": 30.734375,
+            " bad": 21.328125,
+            " high": 27.90625,
+            " low": 32.84375,
+            " fine": 23.28125,
+            " moderate": 30.9375,
+            " decent": 28.0,
+            " average": 27.140625,
+            " medium": 26.5,
+            " acceptable": 26.640625
+        },
+        "pred_mos": 2.357421875
+    },
+    {
+        "filename": "AttnGAN_normal_029.jpg",
+        "logits": {
+            " excellent": 26.984375,
+            " good": 27.390625,
+            " fair": 26.8125,
+            " poor": 32.8125,
+            " bad": 22.890625,
+            " high": 27.90625,
+            " low": 33.46875,
+            " fine": 21.9375,
+            " moderate": 28.59375,
+            " decent": 25.5,
+            " average": 24.53125,
+            " medium": 24.453125,
+            " acceptable": 24.28125
+        },
+        "pred_mos": 2.01953125
+    },
+    {
+        "filename": "AttnGAN_normal_030.jpg",
+        "logits": {
+            " excellent": 27.234375,
+            " good": 26.09375,
+            " fair": 25.296875,
+            " poor": 32.1875,
+            " bad": 22.3125,
+            " high": 28.53125,
+            " low": 32.625,
+            " fine": 21.25,
+            " moderate": 26.703125,
+            " decent": 23.96875,
+            " average": 23.265625,
+            " medium": 23.46875,
+            " acceptable": 22.9375
+        },
+        "pred_mos": 2.02734375
+    },
+    {
+        "filename": "AttnGAN_normal_031.jpg",
+        "logits": {
+            " excellent": 26.59375,
+            " good": 24.796875,
+            " fair": 24.890625,
+            " poor": 32.03125,
+            " bad": 22.984375,
+            " high": 27.453125,
+            " low": 31.90625,
+            " fine": 20.6875,
+            " moderate": 26.265625,
+            " decent": 22.8125,
+            " average": 22.53125,
+            " medium": 23.421875,
+            " acceptable": 22.28125
+        },
+        "pred_mos": 2.015625
+    },
+    {
+        "filename": "AttnGAN_normal_032.jpg",
+        "logits": {
+            " excellent": 26.84375,
+            " good": 26.3125,
+            " fair": 27.234375,
+            " poor": 34.34375,
+            " bad": 25.421875,
+            " high": 28.0625,
+            " low": 33.84375,
+            " fine": 21.828125,
+            " moderate": 28.0625,
+            " decent": 24.59375,
+            " average": 24.75,
+            " medium": 25.1875,
+            " acceptable": 24.296875
+        },
+        "pred_mos": 2.001953125
+    },
+    {
+        "filename": "AttnGAN_normal_033.jpg",
+        "logits": {
+            " excellent": 28.0,
+            " good": 28.5,
+            " fair": 27.96875,
+            " poor": 30.59375,
+            " bad": 21.765625,
+            " high": 29.359375,
+            " low": 31.921875,
+            " fine": 22.765625,
+            " moderate": 29.640625,
+            " decent": 26.5625,
+            " average": 25.78125,
+            " medium": 25.4375,
+            " acceptable": 25.859375
+        },
+        "pred_mos": 2.427734375
+    },
+    {
+        "filename": "AttnGAN_normal_034.jpg",
+        "logits": {
+            " excellent": 28.078125,
+            " good": 27.734375,
+            " fair": 26.9375,
+            " poor": 32.78125,
+            " bad": 23.375,
+            " high": 28.765625,
+            " low": 33.15625,
+            " fine": 22.3125,
+            " moderate": 28.375,
+            " decent": 25.6875,
+            " average": 24.53125,
+            " medium": 24.703125,
+            " acceptable": 24.609375
+        },
+        "pred_mos": 2.04296875
+    },
+    {
+        "filename": "AttnGAN_normal_035.jpg",
+        "logits": {
+            " excellent": 31.953125,
+            " good": 30.3125,
+            " fair": 26.96875,
+            " poor": 29.90625,
+            " bad": 21.859375,
+            " high": 32.46875,
+            " low": 31.671875,
+            " fine": 25.046875,
+            " moderate": 29.34375,
+            " decent": 26.6875,
+            " average": 25.359375,
+            " medium": 25.46875,
+            " acceptable": 25.46875
+        },
+        "pred_mos": 4.55078125
+    },
+    {
+        "filename": "AttnGAN_normal_036.jpg",
+        "logits": {
+            " excellent": 27.984375,
+            " good": 27.203125,
+            " fair": 25.9375,
+            " poor": 32.5625,
+            " bad": 23.296875,
+            " high": 28.65625,
+            " low": 32.75,
+            " fine": 22.140625,
+            " moderate": 27.640625,
+            " decent": 24.9375,
+            " average": 24.0,
+            " medium": 24.0625,
+            " acceptable": 23.84375
+        },
+        "pred_mos": 2.041015625
+    },
+    {
+        "filename": "AttnGAN_normal_037.jpg",
+        "logits": {
+            " excellent": 29.703125,
+            " good": 28.765625,
+            " fair": 25.359375,
+            " poor": 29.15625,
+            " bad": 20.890625,
+            " high": 31.984375,
+            " low": 31.875,
+            " fine": 23.578125,
+            " moderate": 28.828125,
+            " decent": 26.328125,
+            " average": 25.453125,
+            " medium": 25.46875,
+            " acceptable": 24.75
+        },
+        "pred_mos": 3.9140625
+    },
+    {
+        "filename": "AttnGAN_normal_038.jpg",
+        "logits": {
+            " excellent": 26.890625,
+            " good": 26.265625,
+            " fair": 25.40625,
+            " poor": 31.375,
+            " bad": 22.046875,
+            " high": 28.4375,
+            " low": 32.25,
+            " fine": 21.640625,
+            " moderate": 27.125,
+            " decent": 24.25,
+            " average": 23.5625,
+            " medium": 23.78125,
+            " acceptable": 24.078125
+        },
+        "pred_mos": 2.046875
+    },
+    {
+        "filename": "AttnGAN_normal_039.jpg",
+        "logits": {
+            " excellent": 26.5,
+            " good": 25.390625,
+            " fair": 25.34375,
+            " poor": 31.796875,
+            " bad": 22.390625,
+            " high": 27.578125,
+            " low": 32.375,
+            " fine": 20.765625,
+            " moderate": 26.984375,
+            " decent": 23.359375,
+            " average": 23.5,
+            " medium": 23.84375,
+            " acceptable": 22.84375
+        },
+        "pred_mos": 2.01953125
+    },
+    {
+        "filename": "AttnGAN_normal_040.jpg",
+        "logits": {
+            " excellent": 27.21875,
+            " good": 27.5,
+            " fair": 27.109375,
+            " poor": 33.5,
+            " bad": 23.625,
+            " high": 28.8125,
+            " low": 34.15625,
+            " fine": 22.265625,
+            " moderate": 29.28125,
+            " decent": 26.21875,
+            " average": 24.671875,
+            " medium": 25.484375,
+            " acceptable": 24.25
+        },
+        "pred_mos": 2.01171875
+    },
+    {
+        "filename": "AttnGAN_normal_041.jpg",
+        "logits": {
+            " excellent": 27.921875,
+            " good": 28.75,
+            " fair": 27.84375,
+            " poor": 30.328125,
+            " bad": 21.34375,
+            " high": 28.984375,
+            " low": 32.1875,
+            " fine": 22.9375,
+            " moderate": 30.046875,
+            " decent": 27.34375,
+            " average": 26.46875,
+            " medium": 25.921875,
+            " acceptable": 26.234375
+        },
+        "pred_mos": 2.5546875
+    },
+    {
+        "filename": "AttnGAN_normal_042.jpg",
+        "logits": {
+            " excellent": 26.640625,
+            " good": 27.5,
+            " fair": 27.75,
+            " poor": 33.375,
+            " bad": 23.203125,
+            " high": 28.5,
+            " low": 34.34375,
+            " fine": 22.375,
+            " moderate": 29.375,
+            " decent": 25.9375,
+            " average": 26.09375,
+            " medium": 25.453125,
+            " acceptable": 24.9375
+        },
+        "pred_mos": 2.01171875
+    },
+    {
+        "filename": "AttnGAN_normal_043.jpg",
+        "logits": {
+            " excellent": 26.03125,
+            " good": 25.84375,
+            " fair": 26.375,
+            " poor": 32.53125,
+            " bad": 22.59375,
+            " high": 27.375,
+            " low": 32.75,
+            " fine": 21.15625,
+            " moderate": 28.0625,
+            " decent": 24.375,
+            " average": 23.90625,
+            " medium": 24.34375,
+            " acceptable": 24.015625
+        },
+        "pred_mos": 2.009765625
+    },
+    {
+        "filename": "AttnGAN_normal_044.jpg",
+        "logits": {
+            " excellent": 29.546875,
+            " good": 28.3125,
+            " fair": 26.375,
+            " poor": 29.9375,
+            " bad": 21.375,
+            " high": 30.609375,
+            " low": 31.265625,
+            " fine": 23.234375,
+            " moderate": 28.34375,
+            " decent": 25.734375,
+            " average": 25.15625,
+            " medium": 25.03125,
+            " acceptable": 25.515625
+        },
+        "pred_mos": 3.2890625
+    },
+    {
+        "filename": "AttnGAN_normal_045.jpg",
+        "logits": {
+            " excellent": 27.703125,
+            " good": 28.296875,
+            " fair": 27.390625,
+            " poor": 32.21875,
+            " bad": 22.5,
+            " high": 29.171875,
+            " low": 33.6875,
+            " fine": 22.828125,
+            " moderate": 29.34375,
+            " decent": 26.3125,
+            " average": 25.78125,
+            " medium": 25.359375,
+            " acceptable": 24.984375
+        },
+        "pred_mos": 2.078125
+    },
+    {
+        "filename": "AttnGAN_normal_046.jpg",
+        "logits": {
+            " excellent": 26.953125,
+            " good": 27.4375,
+            " fair": 27.0625,
+            " poor": 32.6875,
+            " bad": 22.796875,
+            " high": 28.421875,
+            " low": 33.15625,
+            " fine": 22.0625,
+            " moderate": 28.390625,
+            " decent": 25.328125,
+            " average": 24.265625,
+            " medium": 24.421875,
+            " acceptable": 23.90625
+        },
+        "pred_mos": 2.0234375
+    },
+    {
+        "filename": "AttnGAN_normal_047.jpg",
+        "logits": {
+            " excellent": 26.625,
+            " good": 27.40625,
+            " fair": 27.296875,
+            " poor": 31.90625,
+            " bad": 22.46875,
+            " high": 27.609375,
+            " low": 33.03125,
+            " fine": 21.78125,
+            " moderate": 29.21875,
+            " decent": 25.90625,
+            " average": 25.34375,
+            " medium": 25.1875,
+            " acceptable": 25.3125
+        },
+        "pred_mos": 2.046875
+    },
+    {
+        "filename": "AttnGAN_normal_048.jpg",
+        "logits": {
+            " excellent": 25.984375,
+            " good": 25.984375,
+            " fair": 26.375,
+            " poor": 33.53125,
+            " bad": 23.53125,
+            " high": 27.796875,
+            " low": 34.0625,
+            " fine": 21.140625,
+            " moderate": 27.1875,
+            " decent": 24.25,
+            " average": 24.125,
+            " medium": 24.03125,
+            " acceptable": 22.6875
+        },
+        "pred_mos": 2.00390625
+    },
+    {
+        "filename": "AttnGAN_normal_049.jpg",
+        "logits": {
+            " excellent": 27.921875,
+            " good": 27.625,
+            " fair": 26.890625,
+            " poor": 34.46875,
+            " bad": 24.203125,
+            " high": 30.015625,
+            " low": 35.0,
+            " fine": 23.296875,
+            " moderate": 28.546875,
+            " decent": 25.15625,
+            " average": 25.28125,
+            " medium": 24.65625,
+            " acceptable": 24.578125
+        },
+        "pred_mos": 2.0078125
+    },
+    {
+        "filename": "AttnGAN_normal_050.jpg",
+        "logits": {
+            " excellent": 32.4375,
+            " good": 33.125,
+            " fair": 30.75,
+            " poor": 31.78125,
+            " bad": 24.421875,
+            " high": 33.625,
+            " low": 33.625,
+            " fine": 27.046875,
+            " moderate": 32.1875,
+            " decent": 30.109375,
+            " average": 29.9375,
+            " medium": 27.90625,
+            " acceptable": 28.625
+        },
+        "pred_mos": 3.939453125
+    },
+    {
+        "filename": "AttnGAN_normal_051.jpg",
+        "logits": {
+            " excellent": 28.28125,
+            " good": 29.671875,
+            " fair": 29.21875,
+            " poor": 32.5,
+            " bad": 23.359375,
+            " high": 29.9375,
+            " low": 33.6875,
+            " fine": 24.234375,
+            " moderate": 31.015625,
+            " decent": 28.15625,
+            " average": 27.09375,
+            " medium": 26.265625,
+            " acceptable": 27.09375
+        },
+        "pred_mos": 2.1796875
+    },
+    {
+        "filename": "AttnGAN_normal_052.jpg",
+        "logits": {
+            " excellent": 28.109375,
+            " good": 28.875,
+            " fair": 27.28125,
+            " poor": 30.859375,
+            " bad": 22.0,
+            " high": 29.984375,
+            " low": 32.8125,
+            " fine": 23.59375,
+            " moderate": 29.625,
+            " decent": 27.1875,
+            " average": 26.234375,
+            " medium": 25.828125,
+            " acceptable": 26.15625
+        },
+        "pred_mos": 2.40234375
+    },
+    {
+        "filename": "AttnGAN_normal_053.jpg",
+        "logits": {
+            " excellent": 27.359375,
+            " good": 26.53125,
+            " fair": 26.078125,
+            " poor": 32.3125,
+            " bad": 22.578125,
+            " high": 29.046875,
+            " low": 32.40625,
+            " fine": 22.21875,
+            " moderate": 27.578125,
+            " decent": 24.546875,
+            " average": 23.578125,
+            " medium": 24.21875,
+            " acceptable": 24.03125
+        },
+        "pred_mos": 2.029296875
+    },
+    {
+        "filename": "AttnGAN_normal_054.jpg",
+        "logits": {
+            " excellent": 26.59375,
+            " good": 26.546875,
+            " fair": 26.296875,
+            " poor": 31.53125,
+            " bad": 22.109375,
+            " high": 28.609375,
+            " low": 32.6875,
+            " fine": 21.796875,
+            " moderate": 28.6875,
+            " decent": 25.25,
+            " average": 24.46875,
+            " medium": 25.140625,
+            " acceptable": 24.3125
+        },
+        "pred_mos": 2.0390625
+    },
+    {
+        "filename": "AttnGAN_normal_055.jpg",
+        "logits": {
+            " excellent": 27.46875,
+            " good": 27.296875,
+            " fair": 27.109375,
+            " poor": 31.390625,
+            " bad": 23.15625,
+            " high": 28.171875,
+            " low": 32.15625,
+            " fine": 22.015625,
+            " moderate": 28.578125,
+            " decent": 25.34375,
+            " average": 25.421875,
+            " medium": 25.265625,
+            " acceptable": 25.125
+        },
+        "pred_mos": 2.1015625
+    },
+    {
+        "filename": "AttnGAN_normal_056.jpg",
+        "logits": {
+            " excellent": 27.25,
+            " good": 28.265625,
+            " fair": 27.78125,
+            " poor": 31.0,
+            " bad": 21.75,
+            " high": 29.125,
+            " low": 32.875,
+            " fine": 23.3125,
+            " moderate": 29.546875,
+            " decent": 26.5625,
+            " average": 26.171875,
+            " medium": 25.46875,
+            " acceptable": 25.625
+        },
+        "pred_mos": 2.212890625
+    },
+    {
+        "filename": "AttnGAN_normal_057.jpg",
+        "logits": {
+            " excellent": 26.421875,
+            " good": 26.59375,
+            " fair": 26.59375,
+            " poor": 32.375,
+            " bad": 23.78125,
+            " high": 27.203125,
+            " low": 32.78125,
+            " fine": 21.578125,
+            " moderate": 28.3125,
+            " decent": 25.25,
+            " average": 24.8125,
+            " medium": 24.8125,
+            " acceptable": 24.71875
+        },
+        "pred_mos": 2.017578125
+    },
+    {
+        "filename": "AttnGAN_normal_058.jpg",
+        "logits": {
+            " excellent": 26.9375,
+            " good": 26.234375,
+            " fair": 25.78125,
+            " poor": 33.5,
+            " bad": 23.484375,
+            " high": 28.65625,
+            " low": 33.53125,
+            " fine": 21.828125,
+            " moderate": 27.546875,
+            " decent": 24.140625,
+            " average": 23.484375,
+            " medium": 24.078125,
+            " acceptable": 23.359375
+        },
+        "pred_mos": 2.005859375
+    },
+    {
+        "filename": "AttnGAN_normal_059.jpg",
+        "logits": {
+            " excellent": 26.078125,
+            " good": 24.765625,
+            " fair": 25.1875,
+            " poor": 32.28125,
+            " bad": 22.375,
+            " high": 27.671875,
+            " low": 32.375,
+            " fine": 20.171875,
+            " moderate": 26.171875,
+            " decent": 22.90625,
+            " average": 22.53125,
+            " medium": 23.34375,
+            " acceptable": 21.796875
+        },
+        "pred_mos": 2.0078125
+    },
+    {
+        "filename": "AttnGAN_normal_060.jpg",
+        "logits": {
+            " excellent": 27.5625,
+            " good": 26.796875,
+            " fair": 25.25,
+            " poor": 30.65625,
+            " bad": 22.34375,
+            " high": 29.40625,
+            " low": 31.921875,
+            " fine": 21.4375,
+            " moderate": 27.34375,
+            " decent": 24.390625,
+            " average": 24.421875,
+            " medium": 24.3125,
+            " acceptable": 24.09375
+        },
+        "pred_mos": 2.169921875
+    },
+    {
+        "filename": "AttnGAN_normal_061.jpg",
+        "logits": {
+            " excellent": 28.34375,
+            " good": 28.3125,
+            " fair": 27.703125,
+            " poor": 34.0625,
+            " bad": 23.609375,
+            " high": 29.484375,
+            " low": 35.09375,
+            " fine": 23.359375,
+            " moderate": 29.046875,
+            " decent": 26.25,
+            " average": 26.140625,
+            " medium": 25.4375,
+            " acceptable": 25.515625
+        },
+        "pred_mos": 2.017578125
+    },
+    {
+        "filename": "AttnGAN_normal_062.jpg",
+        "logits": {
+            " excellent": 26.25,
+            " good": 25.4375,
+            " fair": 25.0625,
+            " poor": 29.9375,
+            " bad": 21.15625,
+            " high": 27.40625,
+            " low": 30.828125,
+            " fine": 20.40625,
+            " moderate": 26.375,
+            " decent": 23.28125,
+            " average": 22.625,
+            " medium": 23.34375,
+            " acceptable": 22.578125
+        },
+        "pred_mos": 2.1015625
+    },
+    {
+        "filename": "AttnGAN_normal_063.jpg",
+        "logits": {
+            " excellent": 27.390625,
+            " good": 26.515625,
+            " fair": 26.21875,
+            " poor": 31.34375,
+            " bad": 21.765625,
+            " high": 28.265625,
+            " low": 31.734375,
+            " fine": 21.375,
+            " moderate": 27.578125,
+            " decent": 24.234375,
+            " average": 23.65625,
+            " medium": 23.78125,
+            " acceptable": 24.125
+        },
+        "pred_mos": 2.076171875
+    },
+    {
+        "filename": "AttnGAN_normal_064.jpg",
+        "logits": {
+            " excellent": 27.34375,
+            " good": 26.640625,
+            " fair": 25.625,
+            " poor": 31.359375,
+            " bad": 22.359375,
+            " high": 28.359375,
+            " low": 32.03125,
+            " fine": 21.265625,
+            " moderate": 27.140625,
+            " decent": 24.1875,
+            " average": 24.171875,
+            " medium": 23.734375,
+            " acceptable": 24.234375
+        },
+        "pred_mos": 2.072265625
+    },
+    {
+        "filename": "AttnGAN_normal_065.jpg",
+        "logits": {
+            " excellent": 28.84375,
+            " good": 30.265625,
+            " fair": 29.78125,
+            " poor": 31.75,
+            " bad": 22.046875,
+            " high": 30.265625,
+            " low": 33.625,
+            " fine": 25.5625,
+            " moderate": 31.359375,
+            " decent": 29.046875,
+            " average": 28.15625,
+            " medium": 26.625,
+            " acceptable": 28.53125
+        },
+        "pred_mos": 2.533203125
+    },
+    {
+        "filename": "AttnGAN_normal_066.jpg",
+        "logits": {
+            " excellent": 27.671875,
+            " good": 27.296875,
+            " fair": 26.671875,
+            " poor": 31.578125,
+            " bad": 22.84375,
+            " high": 28.953125,
+            " low": 32.5625,
+            " fine": 21.953125,
+            " moderate": 28.4375,
+            " decent": 25.046875,
+            " average": 24.625,
+            " medium": 25.0625,
+            " acceptable": 24.640625
+        },
+        "pred_mos": 2.091796875
+    },
+    {
+        "filename": "AttnGAN_normal_067.jpg",
+        "logits": {
+            " excellent": 28.578125,
+            " good": 27.59375,
+            " fair": 26.3125,
+            " poor": 30.0,
+            " bad": 21.171875,
+            " high": 29.4375,
+            " low": 31.03125,
+            " fine": 22.25,
+            " moderate": 28.15625,
+            " decent": 25.15625,
+            " average": 24.421875,
+            " medium": 24.28125,
+            " acceptable": 24.265625
+        },
+        "pred_mos": 2.685546875
+    },
+    {
+        "filename": "AttnGAN_normal_068.jpg",
+        "logits": {
+            " excellent": 28.3125,
+            " good": 28.40625,
+            " fair": 27.234375,
+            " poor": 31.859375,
+            " bad": 22.71875,
+            " high": 29.640625,
+            " low": 33.15625,
+            " fine": 23.34375,
+            " moderate": 28.984375,
+            " decent": 26.296875,
+            " average": 25.671875,
+            " medium": 25.4375,
+            " acceptable": 25.28125
+        },
+        "pred_mos": 2.1484375
+    },
+    {
+        "filename": "AttnGAN_normal_069.jpg",
+        "logits": {
+            " excellent": 28.859375,
+            " good": 29.46875,
+            " fair": 28.03125,
+            " poor": 29.5625,
+            " bad": 20.953125,
+            " high": 30.9375,
+            " low": 32.09375,
+            " fine": 24.328125,
+            " moderate": 30.640625,
+            " decent": 27.46875,
+            " average": 26.84375,
+            " medium": 26.953125,
+            " acceptable": 25.859375
+        },
+        "pred_mos": 3.34375
+    },
+    {
+        "filename": "AttnGAN_normal_070.jpg",
+        "logits": {
+            " excellent": 28.78125,
+            " good": 28.0,
+            " fair": 28.46875,
+            " poor": 37.09375,
+            " bad": 26.984375,
+            " high": 29.640625,
+            " low": 36.8125,
+            " fine": 23.4375,
+            " moderate": 30.0,
+            " decent": 25.984375,
+            " average": 25.78125,
+            " medium": 26.5,
+            " acceptable": 25.78125
+        },
+        "pred_mos": 2.001953125
+    },
+    {
+        "filename": "AttnGAN_normal_071.jpg",
+        "logits": {
+            " excellent": 27.75,
+            " good": 28.046875,
+            " fair": 27.40625,
+            " poor": 31.96875,
+            " bad": 22.5625,
+            " high": 28.796875,
+            " low": 33.0625,
+            " fine": 22.171875,
+            " moderate": 29.234375,
+            " decent": 25.796875,
+            " average": 25.625,
+            " medium": 25.328125,
+            " acceptable": 25.9375
+        },
+        "pred_mos": 2.08984375
+    },
+    {
+        "filename": "AttnGAN_normal_072.jpg",
+        "logits": {
+            " excellent": 27.90625,
+            " good": 28.03125,
+            " fair": 26.984375,
+            " poor": 30.84375,
+            " bad": 22.296875,
+            " high": 29.484375,
+            " low": 32.25,
+            " fine": 22.28125,
+            " moderate": 29.125,
+            " decent": 26.140625,
+            " average": 25.453125,
+            " medium": 25.671875,
+            " acceptable": 25.359375
+        },
+        "pred_mos": 2.263671875
+    },
+    {
+        "filename": "AttnGAN_normal_073.jpg",
+        "logits": {
+            " excellent": 27.375,
+            " good": 28.578125,
+            " fair": 27.859375,
+            " poor": 31.5,
+            " bad": 22.421875,
+            " high": 29.390625,
+            " low": 33.59375,
+            " fine": 23.03125,
+            " moderate": 29.8125,
+            " decent": 27.125,
+            " average": 26.765625,
+            " medium": 25.953125,
+            " acceptable": 26.046875
+        },
+        "pred_mos": 2.166015625
+    },
+    {
+        "filename": "AttnGAN_normal_074.jpg",
+        "logits": {
+            " excellent": 28.390625,
+            " good": 28.984375,
+            " fair": 27.6875,
+            " poor": 31.625,
+            " bad": 22.140625,
+            " high": 29.34375,
+            " low": 32.875,
+            " fine": 23.5625,
+            " moderate": 29.796875,
+            " decent": 27.109375,
+            " average": 25.734375,
+            " medium": 25.296875,
+            " acceptable": 26.671875
+        },
+        "pred_mos": 2.248046875
+    },
+    {
+        "filename": "AttnGAN_normal_075.jpg",
+        "logits": {
+            " excellent": 26.953125,
+            " good": 26.546875,
+            " fair": 26.171875,
+            " poor": 32.59375,
+            " bad": 22.828125,
+            " high": 28.34375,
+            " low": 32.71875,
+            " fine": 21.421875,
+            " moderate": 27.4375,
+            " decent": 24.5,
+            " average": 23.453125,
+            " medium": 24.046875,
+            " acceptable": 23.109375
+        },
+        "pred_mos": 2.017578125
+    },
+    {
+        "filename": "AttnGAN_normal_076.jpg",
+        "logits": {
+            " excellent": 26.953125,
+            " good": 27.15625,
+            " fair": 27.125,
+            " poor": 34.40625,
+            " bad": 23.953125,
+            " high": 28.765625,
+            " low": 34.65625,
+            " fine": 22.640625,
+            " moderate": 28.953125,
+            " decent": 25.0625,
+            " average": 24.296875,
+            " medium": 25.0,
+            " acceptable": 24.375
+        },
+        "pred_mos": 2.00390625
+    },
+    {
+        "filename": "AttnGAN_normal_077.jpg",
+        "logits": {
+            " excellent": 27.59375,
+            " good": 28.515625,
+            " fair": 27.78125,
+            " poor": 32.09375,
+            " bad": 22.09375,
+            " high": 28.6875,
+            " low": 33.3125,
+            " fine": 22.953125,
+            " moderate": 29.734375,
+            " decent": 27.078125,
+            " average": 25.765625,
+            " medium": 25.265625,
+            " acceptable": 25.84375
+        },
+        "pred_mos": 2.09765625
+    },
+    {
+        "filename": "AttnGAN_normal_078.jpg",
+        "logits": {
+            " excellent": 26.5625,
+            " good": 25.984375,
+            " fair": 25.765625,
+            " poor": 31.4375,
+            " bad": 21.984375,
+            " high": 27.609375,
+            " low": 31.96875,
+            " fine": 20.84375,
+            " moderate": 27.484375,
+            " decent": 24.28125,
+            " average": 23.53125,
+            " medium": 23.640625,
+            " acceptable": 23.359375
+        },
+        "pred_mos": 2.03515625
+    },
+    {
+        "filename": "AttnGAN_normal_079.jpg",
+        "logits": {
+            " excellent": 26.9375,
+            " good": 27.109375,
+            " fair": 26.75,
+            " poor": 32.75,
+            " bad": 22.8125,
+            " high": 28.546875,
+            " low": 33.5625,
+            " fine": 22.34375,
+            " moderate": 28.546875,
+            " decent": 25.3125,
+            " average": 24.9375,
+            " medium": 24.921875,
+            " acceptable": 24.140625
+        },
+        "pred_mos": 2.01953125
+    }
+]
