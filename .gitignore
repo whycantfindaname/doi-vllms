@@ -27,5 +27,6 @@ q_bench/__pycache__/
 
 example_data/
 example_scripts/
+data/task_data
 data/meta_json
 !data/meta_json/benchmark-v1/release
