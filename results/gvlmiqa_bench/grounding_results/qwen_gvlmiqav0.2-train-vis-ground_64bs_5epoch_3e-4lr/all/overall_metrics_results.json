@@ -1,3 +1,113 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:c84bbc2ac747c331c364bab95b1652d12fdbe803d6948b4e817f3b569d7380d2
-size 4167
+{
+    "pred_vis": {
+        "IoU": {
+            "Edge Aliasing Effect": 0.5723963932253946,
+            "Low Clarity": 0.7154023903435903,
+            "Underexposure": 0.8249988136467544,
+            "Excessive Darkness": 0.592209715505365,
+            "Out Of Focus Blur": 0.6548040821235606,
+            "Meaningless Solid Color": 0.9025352696276726,
+            "Noise": 0.7863083878327765,
+            "Overexposure": 0.6668244308006136,
+            "Motion Blur": 0.8911098020473436,
+            "Edge Ringing Effect": 0.6904751870047832,
+            "Blocking Artifacts": 0.9232196139477169,
+            "Interlaced Scanning": 0.0,
+            "Banding Effect": 0.0,
+            "Moiré Pattern": 0.6666657777782964,
+            "Compression": 0.0
+        },
+        "mAP": 0.2197599846804242,
+        "AP": {
+            "Edge Aliasing Effect": 0.12190175024709365,
+            "Low Clarity": 0.4449787097574317,
+            "Underexposure": 0.07738081186888646,
+            "Excessive Darkness": 0.15502028576149846,
+            "Out Of Focus Blur": 0.20408729388956265,
+            "Meaningless Solid Color": 0.3967960651657771,
+            "Noise": 0.23325234808021783,
+            "Overexposure": 0.04857804138536739,
+            "Motion Blur": 0.24714005242443218,
+            "Edge Ringing Effect": 0.05598581788159318,
+            "Blocking Artifacts": 0.6065441624304223,
+            "Interlaced Scanning": 0.0,
+            "Banding Effect": 0.0,
+            "Moiré Pattern": 0.04545447727280682,
+            "Compression": 0.0
+        },
+        "average_F1": 0.1997030849090413,
+        "F1": {
+            "Edge Aliasing Effect": 0.16617959803317908,
+            "Low Clarity": 0.5291461809461383,
+            "Underexposure": 0.08571416245680566,
+            "Excessive Darkness": 0.21006236401693312,
+            "Out Of Focus Blur": 0.24616694816675208,
+            "Meaningless Solid Color": 0.4172524864610344,
+            "Noise": 0.26271092308102045,
+            "Overexposure": 0.057912791756877115,
+            "Motion Blur": 0.2620911182492187,
+            "Edge Ringing Effect": 0.0680750184370913,
+            "Blocking Artifacts": 0.6296287022325424,
+            "Interlaced Scanning": 0.0,
+            "Banding Effect": 0.0,
+            "Moiré Pattern": 0.06060597979802695,
+            "Compression": 0.0
+        }
+    },
+    "pred_cap": {
+        "IoU": {
+            "Edge Aliasing Effect": 0.0,
+            "Out Of Focus Blur": 0.0,
+            "Underexposure": 0.0,
+            "Low Clarity": 0.0,
+            "Excessive Darkness": 0.0,
+            "Noise": 0.0,
+            "Overexposure": 0.0,
+            "Meaningless Solid Color": 0.0,
+            "Motion Blur": 0.0,
+            "Edge Ringing Effect": 0.0,
+            "Blocking Artifacts": 0.0,
+            "Interlaced Scanning": 0.0,
+            "Banding Effect": 0.0,
+            "Moiré Pattern": 0.0,
+            "Compression": 0.0
+        },
+        "mAP": NaN,
+        "AP": {
+            "Edge Aliasing Effect": 0.0,
+            "Out Of Focus Blur": 0.0,
+            "Underexposure": 0.0,
+            "Low Clarity": 0.0,
+            "Excessive Darkness": 0.0,
+            "Noise": 0.0,
+            "Overexposure": 0.0,
+            "Meaningless Solid Color": 0.0,
+            "Motion Blur": 0.0,
+            "Edge Ringing Effect": 0.0,
+            "Blocking Artifacts": 0.0,
+            "Interlaced Scanning": 0.0,
+            "Banding Effect": 0.0,
+            "Moiré Pattern": 0.0,
+            "Compression": 0.0
+        },
+        "average_F1": 0.0,
+        "F1": {
+            "Edge Aliasing Effect": 0.0,
+            "Out Of Focus Blur": 0.0,
+            "Underexposure": 0.0,
+            "Low Clarity": 0.0,
+            "Excessive Darkness": 0.0,
+            "Noise": 0.0,
+            "Overexposure": 0.0,
+            "Meaningless Solid Color": 0.0,
+            "Motion Blur": 0.0,
+            "Edge Ringing Effect": 0.0,
+            "Blocking Artifacts": 0.0,
+            "Interlaced Scanning": 0.0,
+            "Banding Effect": 0.0,
+            "Moiré Pattern": 0.0,
+            "Compression": 0.0
+        }
+    },
+    "overall_iou_between_models": 0.0
+}
