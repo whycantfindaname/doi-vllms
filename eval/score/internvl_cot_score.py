@@ -1,7 +1,7 @@
 import json
 import os
 
-from scorer import InternVLQAlignScorer
+from scorer import InternVLCOTScorer
 # other iqadatasets
 cross_datasets = ["agi.json", "test_koniq.json", "test_spaq.json", "livec.json"]
 data_dir =  "../datasets/val_json"
@@ -31,7 +31,7 @@ levels = [
     " medium",
     " acceptable",
 ]
-scorer = InternVLQAlignScorer(model_path, model_base, level=levels)
+scorer = InternVLCOTScorer(model_path, model_base, device="cuda")
 
 for dataset in cross_datasets:
     file = os.path.join(data_dir, dataset)
