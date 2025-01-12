@@ -8,11 +8,9 @@ from PIL import Image
 from torchvision.transforms.functional import InterpolationMode
 from transformers import AutoModel, AutoTokenizer
 from prompt import process_qbench
-from doi_prompt import process_benchmark_input  
+from doi_prompt import process_benchmark_mcq, process_benchmark_saq 
 from tqdm import tqdm
 import os
-# raw_data, processed_data = process_qbench()
-raw_data, processed_data = process_benchmark_input()
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
 
@@ -113,36 +111,54 @@ def split_model(model_name):
 
     return device_map
 
-path = "../models/InternVL2_5-8B"
-device_map = split_model('InternVL2_5-8B')
-tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
-model = AutoModel.from_pretrained(
-    path,
-    torch_dtype=torch.bfloat16,
-    low_cpu_mem_usage=True,
-    use_flash_attn=False,
-    trust_remote_code=True,
-    device_map=device_map).eval()
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--model_path', type=str, default='../models/InternVL2-8B', help='path to the model')
+    parser.add_argument('--save_path', type=str, required=True, help='path to save the predicted answers')
+    parser.add_argument('--mdp', type=int, default=12, help='maximum dynamic patch size')
+    parser.add_argument('--eval_dataset', type=str, required=True, choices=['q-bench', 'doi-bench-mcq', 'doi-bench-saq'], help='datasets to evaluate')
+    args = parser.parse_args()
+    if args.eval_dataset == 'q-bench':
+        raw_data, processed_data = process_qbench()
+    elif args.eval_dataset == 'doi-bench':
+        raw_data, processed_data = process_benchmark_mcq()
+    elif args.eval_dataset == 'doi-bench-saq':
+        raw_data, processed_data = process_benchmark_saq()
+    path = args.model_path
+    save_path = args.save_path
 
-print(tokenizer.model_max_length)
+    device_map = split_model('InternVL2_5-8B')
+    tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True, use_fast=False)
+    model = AutoModel.from_pretrained(
+        path,
+        torch_dtype=torch.float16,
+        low_cpu_mem_usage=True,
+        use_flash_attn=False,
+        trust_remote_code=True,
+        device_map=device_map).eval()
 
-generation_config = dict(max_new_tokens=512, do_sample=False)
+    print(tokenizer.model_max_length)
+    generation_config = dict(max_new_tokens=1024, do_sample=False, top_p=None, top_k=None, temperature=None)
 
-save_path = 'results/doi_bench/internvl2_5/internvl2_5_doi-bench-mcq.json'
-os.makedirs(os.path.dirname(save_path), exist_ok=True)
-for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
-    # set the max number of tiles in `max_num`
-    # finetune用的max_dynamic_patch是6
-    pixel_values = load_image(data['content'][0]['image'], max_num=3).to(torch.bfloat16).to(model.device)
-    # single-image single-round conversation (单图单轮对话)
-    question = data['content'][1]['text']
-    response = model.chat(tokenizer, pixel_values, question, generation_config)
-    gt["pred_ans"] = response
-    print(question)
-    print(gt["correct_ans"])
-    print(gt["pred_ans"])
-    # input()
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
+        # set the max number of tiles in `max_num`
+        # finetune用的max_dynamic_patch是6
+        pixel_values = load_image(data['content'][0]['image'], max_num=args.mdp).to(model.dtype).to(model.device)
+        # single-image single-round conversation (单图单轮对话)
+        question = data['content'][1]['text']
+        response = model.chat(tokenizer, pixel_values, question, generation_config)
+        gt["pred_ans"] = response
+        print(question)
+        try:
+            print("GT:", gt["correct_ans"])
+            print("Pred:", gt["pred_ans"])
+        except:
+            print("GT:", gt["ground_truth"])
+            print("Pred:", gt["pred_ans"])
+        # input()
 
-with open(save_path, 'w') as f:
-    json.dump(raw_data, f, indent=4, ensure_ascii=False)
+    with open(save_path, 'w') as f:
+        json.dump(raw_data, f, indent=4, ensure_ascii=False)
 
