@@ -4,7 +4,7 @@ import json
 from tqdm import tqdm
 from transformers import AutoTokenizer
 import torch
-
+import re
 torch.manual_seed(1234)
 
 meta_file = 'data/meta_json/benchmark-v1/test/dist_info_v2_clean.json'
@@ -53,7 +53,10 @@ def process_single_bbox(meta_item):
 def process_all_bbox(meta_item):
     image = meta_item['image']
     img_path = os.path.join(image_folder, image)
+    # if image != 'LIVEfb_VOC2012__2009_004232.jpg':
+    #     return
     save_folder_base = '../datasets/images/train_vis_dist'
+    # save_folder_base = 'test'
     os.makedirs(save_folder_base, exist_ok=True)
     
     dist = meta_item['distortions']
@@ -88,7 +91,11 @@ def process_all_bbox(meta_item):
         
         for dist_item in items:
             coord = dist_item['coordinates']
-            response += f"<ref>{dist_item['id']}</ref><box>({coord[0]}, {coord[1]}), ({coord[2]}, {coord[3]})</box>"
+            id_str = dist_item['id']
+            number = re.search(r'\d+', id_str)
+            if number:
+                id = number.group()
+            response += f"<ref>{id}</ref><box>({coord[0]}, {coord[1]}), ({coord[2]}, {coord[3]})</box>"
             i += 1
         
         history = [(query, response)]
@@ -100,10 +107,6 @@ def process_all_bbox(meta_item):
             print(f"Number of generated bounding boxes {i-1} does not match the distortions {len(items)}")
             print(items)
             input()
-        
-# # 使用多线程处理
-# with ThreadPoolExecutor(max_workers=8) as executor:
-#     list(tqdm(executor.map(process_single_bbox, meta_data1), total=len(meta_data1)))
 # 使用多线程处理
 with ThreadPoolExecutor(max_workers=8) as executor:
     list(tqdm(executor.map(process_all_bbox, meta_data2), total=len(meta_data2)))
