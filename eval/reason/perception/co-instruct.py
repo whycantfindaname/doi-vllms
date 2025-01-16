@@ -9,8 +9,8 @@ raw_data, processed_data = process_qbench()
 save_path = 'results/q_bench/mplug-owl2/co-instruct.json'
 raw_data, processed_data = process_benchmark_mcq()
 save_path = 'results/doi_bench/mplug-owl2/co-instruct.json'
-raw_data, processed_data = process_benchmark_saq()
-save_path = 'results/doi_bench/mplug-owl2/co-instruct_position.json'
+# raw_data, processed_data = process_benchmark_saq()
+# save_path = 'results/doi_bench/mplug-owl2/co-instruct_position.json'
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
 
 model = AutoModelForCausalLM.from_pretrained("../models/co-instruct", 
@@ -35,7 +35,6 @@ for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
     len, generated_ids = model.chat(prompt, [image], max_new_tokens=512)
     generated_ids[generated_ids == -200] = tokenizer.pad_token_id
     print(generated_ids)
-    input()
     answer = tokenizer.batch_decode(generated_ids[:, len:], skip_special_tokens=True)[0]
     gt["pred_ans"] = answer
     try:

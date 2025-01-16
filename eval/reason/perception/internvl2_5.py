@@ -114,14 +114,14 @@ def split_model(model_name):
 if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser()
-    parser.add_argument('--model_path', type=str, default='../models/InternVL2-8B', help='path to the model')
+    parser.add_argument('--model_path', type=str, default='../models/InternVL2_5-8B', help='path to the model')
     parser.add_argument('--save_path', type=str, required=True, help='path to save the predicted answers')
     parser.add_argument('--mdp', type=int, default=12, help='maximum dynamic patch size')
     parser.add_argument('--eval_dataset', type=str, required=True, choices=['q-bench', 'doi-bench-mcq', 'doi-bench-saq'], help='datasets to evaluate')
     args = parser.parse_args()
     if args.eval_dataset == 'q-bench':
         raw_data, processed_data = process_qbench()
-    elif args.eval_dataset == 'doi-bench':
+    elif args.eval_dataset == 'doi-bench-mcq':
         raw_data, processed_data = process_benchmark_mcq()
     elif args.eval_dataset == 'doi-bench-saq':
         raw_data, processed_data = process_benchmark_saq()

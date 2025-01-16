@@ -23,10 +23,13 @@ not_useful_for_now
 example_data/videos/ego4d/*.mp4
 q_align/__pycache__/
 q_bench/__pycache__/
-*.txt`
+
+test/
 
 example_data/
 example_scripts/
 data/task_data
 data/meta_json
 !data/meta_json/benchmark-v1/release
+!data/meta_json/benchmark-v1/test
+!data/meta_json/train-v1/test

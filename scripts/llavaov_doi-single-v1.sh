@@ -7,7 +7,7 @@
 #SBATCH --job-name=lmms-finetune
 #SBATCH --output=/home/u2114040/lmms-finetune/output/%j.no_bbox_out.txt
 #SBATCH --error=/home/u2114040/lmms-finetune/output/%j.no_bbox_err.txt
-GPUS=${GPUS:-8}
+GPUS=${GPUS:-1}
 BATCH_SIZE=${BATCH_SIZE:-16}
 PER_DEVICE_BATCH_SIZE=${PER_DEVICE_BATCH_SIZE:-1}
 GRAD_ACCUM=1
@@ -23,9 +23,9 @@ DISTRIBUTED_ARGS="
 # according to your own case
 MODEL_ID=llava-onevision-7b-ov                                   # model id; pick on by running `python supported_models.py`
 MODEL_LOCAL_PATH=../models/llava-onevision-qwen2-7b-ov-hf
-TRAIN_DATA_PATH=../datasets/train_llavaov/train_llavaov_all.json  # path to the training data json file
+TRAIN_DATA_PATH=./example_data/multi_images.json  # path to the training data json file
 EVAL_DATA_PATH=../datasets/q-bench/q_bench_eval.json  # path to the evaluation data json file (optional)
-IMAGE_FOLDER=../datasets/images                     # path to the image root folder; if provided, the image paths in the json should be relative
+IMAGE_FOLDER=./example_data/images                     # path to the image root folder; if provided, the image paths in the json should be relative
 VIDEO_FOLDER=../example_data/videos                      # path to the video root folder; if provided, the video paths in the json should be relative
 NUM_FRAMES=8                                            # how many frames are sampled from each video
 

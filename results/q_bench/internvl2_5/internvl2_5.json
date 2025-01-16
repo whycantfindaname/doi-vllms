@@ -366,7 +366,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -481,7 +481,7 @@
             "Colorful"
         ],
         "correct_ans": "Dull",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -646,7 +646,7 @@
             "Backlighting"
         ],
         "correct_ans": "Backlighting",
-        "pred_ans": "D"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -711,7 +711,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -878,7 +878,7 @@
             "Clear"
         ],
         "correct_ans": "Clear",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -1057,7 +1057,7 @@
             "Low"
         ],
         "correct_ans": "Low",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -1286,7 +1286,7 @@
             "Low"
         ],
         "correct_ans": "Low",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -1336,7 +1336,7 @@
             "Out of Focus"
         ],
         "correct_ans": "Out of Focus",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -1349,7 +1349,7 @@
             "Low"
         ],
         "correct_ans": "High",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -1361,7 +1361,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -1374,7 +1374,7 @@
             "Weakly blurred"
         ],
         "correct_ans": "Weakly blurred",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -1465,7 +1465,7 @@
             "Moderate"
         ],
         "correct_ans": "Severe",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -1491,7 +1491,7 @@
             "Low"
         ],
         "correct_ans": "High",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -1530,7 +1530,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -1571,7 +1571,7 @@
             "Overexposure"
         ],
         "correct_ans": "Underexposure",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -1663,7 +1663,7 @@
             "Blurry"
         ],
         "correct_ans": "Blurry",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -1778,7 +1778,7 @@
             "Underexposure"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -1909,7 +1909,7 @@
             "Motion blur"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "D"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -1975,7 +1975,7 @@
             "Out of focus"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "D"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -2234,7 +2234,7 @@
             "Adult"
         ],
         "correct_ans": "Young girl",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -2287,7 +2287,7 @@
             "Lamp"
         ],
         "correct_ans": "Table and chairs",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -2376,7 +2376,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -2500,7 +2500,7 @@
             "Medium"
         ],
         "correct_ans": "High",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -2538,7 +2538,7 @@
             "Underexposed"
         ],
         "correct_ans": "Underexposed",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -2551,7 +2551,7 @@
             "Very good"
         ],
         "correct_ans": "Acceptable",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -2565,7 +2565,7 @@
             "Compression distortion"
         ],
         "correct_ans": "Compression distortion",
-        "pred_ans": "D"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -2720,7 +2720,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -2748,7 +2748,7 @@
             "Noise"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "C"
+        "pred_ans": "D"
     },
     {
         "type": 0,
@@ -2811,7 +2811,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -2838,7 +2838,7 @@
             "Medium"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -2876,7 +2876,7 @@
             "High"
         ],
         "correct_ans": "Low",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -2963,7 +2963,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -3027,7 +3027,7 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "A"
+        "pred_ans": "D"
     },
     {
         "type": 1,
@@ -3077,7 +3077,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -3168,7 +3168,7 @@
             "Totally not in focus"
         ],
         "correct_ans": "Totally not in focus",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -3415,7 +3415,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -3492,7 +3492,7 @@
             "Poor"
         ],
         "correct_ans": "Poor",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -3660,7 +3660,7 @@
             "Vivid and saturated"
         ],
         "correct_ans": "Faded, not yet black and white",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -3712,7 +3712,7 @@
             "Underexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -3740,7 +3740,7 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "D"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -3767,7 +3767,7 @@
             "Very blurry"
         ],
         "correct_ans": "Very blurry",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -3781,7 +3781,7 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "D"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -3859,7 +3859,7 @@
             "Average"
         ],
         "correct_ans": "Very High",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -3921,7 +3921,7 @@
             "Moderate"
         ],
         "correct_ans": "Slight",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -3934,7 +3934,7 @@
             "Medium"
         ],
         "correct_ans": "High",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -3986,7 +3986,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -4035,7 +4035,7 @@
             "Low"
         ],
         "correct_ans": "Low",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -4138,7 +4138,7 @@
             "Moderate"
         ],
         "correct_ans": "Monotonous",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -4318,7 +4318,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -4368,7 +4368,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -4536,7 +4536,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -4548,7 +4548,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -4572,7 +4572,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -4611,7 +4611,7 @@
             "Acceptable"
         ],
         "correct_ans": "Acceptable",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -4880,7 +4880,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -5243,7 +5243,7 @@
             "Not blurry at all"
         ],
         "correct_ans": "Not blurry at all",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -5282,7 +5282,7 @@
             "Clover"
         ],
         "correct_ans": "Clover",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -5346,7 +5346,7 @@
             "Low"
         ],
         "correct_ans": "High",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -5422,7 +5422,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -5522,7 +5522,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -5877,7 +5877,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -6018,7 +6018,7 @@
             "Low"
         ],
         "correct_ans": "High",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -6464,7 +6464,7 @@
             "Underexposure"
         ],
         "correct_ans": "Blur",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -6593,7 +6593,7 @@
             "Black"
         ],
         "correct_ans": "Blue",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -6606,7 +6606,7 @@
             "Moderate"
         ],
         "correct_ans": "Monotonous",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -6633,7 +6633,7 @@
             "Brown"
         ],
         "correct_ans": "Yellow",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -6671,7 +6671,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -6724,7 +6724,7 @@
             "Underexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -6801,7 +6801,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -6827,7 +6827,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -6942,7 +6942,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -7046,7 +7046,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -7070,7 +7070,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -7122,7 +7122,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -7135,7 +7135,7 @@
             "Blur"
         ],
         "correct_ans": "Blur",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -7233,7 +7233,7 @@
             "Low"
         ],
         "correct_ans": "High",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -7322,7 +7322,7 @@
             "Person below"
         ],
         "correct_ans": "Person below",
-        "pred_ans": "B"
+        "pred_ans": "D"
     },
     {
         "type": 0,
@@ -7372,7 +7372,7 @@
             "High"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -7490,7 +7490,7 @@
             "Slight"
         ],
         "correct_ans": "Severe",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -7542,7 +7542,7 @@
             "Underexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -7643,7 +7643,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -7743,7 +7743,7 @@
             "Acceptable"
         ],
         "correct_ans": "Acceptable",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -8179,7 +8179,7 @@
             "Medium"
         ],
         "correct_ans": "Low",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -8270,7 +8270,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -8296,7 +8296,7 @@
             "Blur"
         ],
         "correct_ans": "Snow",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -8473,7 +8473,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -8487,7 +8487,7 @@
             "OutOfFocus"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -8500,7 +8500,7 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -8512,7 +8512,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -8524,7 +8524,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -8832,7 +8832,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -8857,7 +8857,7 @@
             "Average"
         ],
         "correct_ans": "Average",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -9024,7 +9024,7 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -9061,7 +9061,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -9075,7 +9075,7 @@
             "Shoulder"
         ],
         "correct_ans": "Face",
-        "pred_ans": "D"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -9334,7 +9334,7 @@
             "Left"
         ],
         "correct_ans": "Left",
-        "pred_ans": "A"
+        "pred_ans": "D"
     },
     {
         "type": 1,
@@ -9553,7 +9553,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -9630,7 +9630,7 @@
             "Cup"
         ],
         "correct_ans": "Cup",
-        "pred_ans": "D"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -9826,7 +9826,7 @@
             "Bright"
         ],
         "correct_ans": "Dark",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -9894,7 +9894,7 @@
             "High"
         ],
         "correct_ans": "Low",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -9908,7 +9908,7 @@
             "Out of focus"
         ],
         "correct_ans": "Out of focus",
-        "pred_ans": "B"
+        "pred_ans": "D"
     },
     {
         "type": 1,
@@ -9963,7 +9963,7 @@
             "Cup"
         ],
         "correct_ans": "Man without a hat",
-        "pred_ans": "D"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -9991,7 +9991,7 @@
             "Underexposure"
         ],
         "correct_ans": "Distortion",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -10043,7 +10043,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -10093,7 +10093,7 @@
             "Overexposure"
         ],
         "correct_ans": "Underexposure",
-        "pred_ans": "D"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -10119,7 +10119,7 @@
             "Top"
         ],
         "correct_ans": "Right",
-        "pred_ans": "D"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -10170,7 +10170,7 @@
             "Moderate"
         ],
         "correct_ans": "Severe",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -10233,7 +10233,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -10336,7 +10336,7 @@
             "Bottom right"
         ],
         "correct_ans": "Top left",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -10510,7 +10510,7 @@
             "High"
         ],
         "correct_ans": "Acceptable",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -10586,7 +10586,7 @@
             "Man wearing a hat"
         ],
         "correct_ans": "Man wearing a hat",
-        "pred_ans": "B"
+        "pred_ans": "D"
     },
     {
         "type": 1,
@@ -10791,7 +10791,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -10829,7 +10829,7 @@
             "Over-exposure"
         ],
         "correct_ans": "Under-exposure",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -10929,7 +10929,7 @@
             "Average"
         ],
         "correct_ans": "Low",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -11172,7 +11172,7 @@
             "Over-exposure"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -11184,7 +11184,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -11302,7 +11302,7 @@
             "Not blurry at all"
         ],
         "correct_ans": "Very blurry",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -11342,7 +11342,7 @@
             "The right part"
         ],
         "correct_ans": "The left part",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -11406,7 +11406,7 @@
             "Vibrant"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -11485,7 +11485,7 @@
             "Moderate"
         ],
         "correct_ans": "Monotonous",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -11546,7 +11546,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -11560,7 +11560,7 @@
             "Motion blur"
         ],
         "correct_ans": "Out of focus",
-        "pred_ans": "D"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -11805,7 +11805,7 @@
             "Snow"
         ],
         "correct_ans": "Snow",
-        "pred_ans": "B"
+        "pred_ans": "D"
     },
     {
         "type": 0,
@@ -11853,7 +11853,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -11907,7 +11907,7 @@
             "Medium"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -11919,7 +11919,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -12376,7 +12376,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -12388,7 +12388,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -12401,7 +12401,7 @@
             "Noise"
         ],
         "correct_ans": "Over-exposure",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -12467,7 +12467,7 @@
             "Window"
         ],
         "correct_ans": "Kitten",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -12775,7 +12775,7 @@
             "Low"
         ],
         "correct_ans": "Low",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -12903,7 +12903,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -12991,7 +12991,7 @@
             "Very blurry"
         ],
         "correct_ans": "Slightly blurry",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -13084,7 +13084,7 @@
             "Waves"
         ],
         "correct_ans": "Human",
-        "pred_ans": "D"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -13189,7 +13189,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -13370,7 +13370,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -13396,7 +13396,7 @@
             "Moderate"
         ],
         "correct_ans": "Monotonous",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -13421,7 +13421,7 @@
             "Compression"
         ],
         "correct_ans": "Blur",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -13524,7 +13524,7 @@
             "Out-of-focus"
         ],
         "correct_ans": "Underexposure",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -13536,7 +13536,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -13726,7 +13726,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -13890,7 +13890,7 @@
             "Blurry"
         ],
         "correct_ans": "Blurry",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -14004,7 +14004,7 @@
             "Slight"
         ],
         "correct_ans": "Severe",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -14135,7 +14135,7 @@
             "A little blurry"
         ],
         "correct_ans": "A little blurry",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -14173,7 +14173,7 @@
             "Dark"
         ],
         "correct_ans": "Dark",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -14261,7 +14261,7 @@
             "Very blurry"
         ],
         "correct_ans": "Very blurry",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -14274,7 +14274,7 @@
             "Blurry"
         ],
         "correct_ans": "In focus",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -14313,7 +14313,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -14340,7 +14340,7 @@
             "Medium"
         ],
         "correct_ans": "Dark",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -14377,7 +14377,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -14428,7 +14428,7 @@
             "Trees"
         ],
         "correct_ans": "Trees",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -14466,7 +14466,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -14492,7 +14492,7 @@
             "Vibrant"
         ],
         "correct_ans": "Dark",
-        "pred_ans": "D"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -14717,7 +14717,7 @@
             "Medium"
         ],
         "correct_ans": "High",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -14729,7 +14729,7 @@
             "Bright and Cheerful"
         ],
         "correct_ans": "Bright and Cheerful",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -14832,7 +14832,7 @@
             "Totally clear"
         ],
         "correct_ans": "Partly clear",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -14845,7 +14845,7 @@
             "Dark"
         ],
         "correct_ans": "Dark",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -14858,7 +14858,7 @@
             "Severe"
         ],
         "correct_ans": "Severe",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -14885,7 +14885,7 @@
             "Brightness"
         ],
         "correct_ans": "Out of focus",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -15062,7 +15062,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -15141,7 +15141,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -15423,7 +15423,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -15449,7 +15449,7 @@
             "Above"
         ],
         "correct_ans": "Front",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -15488,7 +15488,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -15641,7 +15641,7 @@
             "Motion blur"
         ],
         "correct_ans": "Out of focus",
-        "pred_ans": "C"
+        "pred_ans": "D"
     },
     {
         "type": 0,
@@ -15653,7 +15653,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -15667,7 +15667,7 @@
             "Trees"
         ],
         "correct_ans": "Flower bed",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -15681,7 +15681,7 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "A"
+        "pred_ans": "D"
     },
     {
         "type": 2,
@@ -15720,7 +15720,7 @@
             "High"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -15825,7 +15825,7 @@
             "Acceptable"
         ],
         "correct_ans": "Dark",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -15904,7 +15904,7 @@
             "Underexposure"
         ],
         "correct_ans": "Out of focus",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -15916,7 +15916,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -16022,7 +16022,7 @@
             "Bottom"
         ],
         "correct_ans": "Right",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -16097,7 +16097,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -16266,7 +16266,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -16368,7 +16368,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -16418,7 +16418,7 @@
             "Underexposure"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -16572,7 +16572,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -16586,7 +16586,7 @@
             "Overexposure"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "B"
+        "pred_ans": "D"
     },
     {
         "type": 1,
@@ -16626,7 +16626,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -16665,7 +16665,7 @@
             "Under-exposure"
         ],
         "correct_ans": "Under-exposure",
-        "pred_ans": "B"
+        "pred_ans": "C"
     },
     {
         "type": 2,
@@ -16755,7 +16755,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -17056,7 +17056,7 @@
             "No"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -17069,7 +17069,7 @@
             "Bad"
         ],
         "correct_ans": "Bad",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -17173,7 +17173,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -17326,7 +17326,7 @@
             "Acceptable"
         ],
         "correct_ans": "Low",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -17352,7 +17352,7 @@
             "Bottom right"
         ],
         "correct_ans": "Top left",
-        "pred_ans": "A"
+        "pred_ans": "C"
     },
     {
         "type": 0,
@@ -17478,7 +17478,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -17503,7 +17503,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -17515,7 +17515,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -17835,7 +17835,7 @@
             "No"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -17861,7 +17861,7 @@
             "Normal"
         ],
         "correct_ans": "Clear",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -17913,7 +17913,7 @@
             "Restless"
         ],
         "correct_ans": "Lively",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -17966,7 +17966,7 @@
             "Underexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -18070,7 +18070,7 @@
             "Low"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "C"
+        "pred_ans": "A"
     },
     {
         "type": 0,
@@ -18137,7 +18137,7 @@
             "Blur"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 2,
@@ -18163,7 +18163,7 @@
             "High"
         ],
         "correct_ans": "Medium",
-        "pred_ans": "C"
+        "pred_ans": "B"
     },
     {
         "type": 2,
@@ -18231,7 +18231,7 @@
             "Out of focus"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -18346,7 +18346,7 @@
             "Fair"
         ],
         "correct_ans": "Bad",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -18900,7 +18900,7 @@
             "Overexposure"
         ],
         "correct_ans": "Noise",
-        "pred_ans": "D"
+        "pred_ans": "C"
     },
     {
         "type": 1,
@@ -18989,7 +18989,7 @@
             "Black"
         ],
         "correct_ans": "Green",
-        "pred_ans": "B"
+        "pred_ans": "A"
     },
     {
         "type": 1,
@@ -19043,7 +19043,7 @@
             "Yes"
         ],
         "correct_ans": "No",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 0,
@@ -19144,7 +19144,7 @@
             "Yes"
         ],
         "correct_ans": "Yes",
-        "pred_ans": "A"
+        "pred_ans": "B"
     },
     {
         "type": 1,
@@ -19185,7 +19185,7 @@
             "Underexposure"
         ],
         "correct_ans": "Underexposure",
-        "pred_ans": "C"
+        "pred_ans": "D"
     },
     {
         "type": 1,
@@ -19199,6 +19199,6 @@
             "Overexposure"
         ],
         "correct_ans": "Overexposure",
-        "pred_ans": "D"
+        "pred_ans": "B"
     }
 ]

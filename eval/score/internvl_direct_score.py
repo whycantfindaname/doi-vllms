@@ -33,7 +33,6 @@ levels = [
     " poor",
     " bad",
     " high",
-    " low",
     " fine",
     " moderate",
     " decent",
@@ -71,10 +70,11 @@ for dataset in cross_datasets:
         except:
             image = not_complete[i]['img_path']
         img_list.append(os.path.join(image_dir, image))
+    query = "You are an expert in image quality assessment. Please rate the quality of the image in a single sentence: 'The quality of the image is (one of the following five quality levels: bad, poor, fair, good, excellent)'"
     # 每8个图像进行一次评分
     for i in range(0, len(img_list), 8):
         batch = img_list[i:i + 8]  # 获取当前的8个图像
-        score = scorer(batch)
+        score = scorer(batch, query=query)
         output.extend(score)        # 将结果添加到输出列表
         print("Saving results to", save_path)
         with open(save_path, "w") as file:

@@ -21,7 +21,6 @@ def encode_img(img_path):
         img_path = img_path.replace(ext, ".jpg")
     else:
         raise ValueError("Unsupported image format")
-    print(img_path)
     with open(img_path, "rb") as img_file:
         img_base64 = base64.b64encode(img_file.read()).decode("utf-8")
 

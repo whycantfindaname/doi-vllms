@@ -949,6 +949,7 @@ class InternVLQAlignScorer(nn.Module):
         self,
         image_path: List[str],
         sys_prompt: str = "You are an expert in image quality assessment.",
+        query: str = "You are an expert in image quality assessment. Can you rate the quality of the image in a single sentence?"
     ):
         """
         Rates the quality of a list of input images, returning a score for each image between 1 and 5.
@@ -962,13 +963,14 @@ class InternVLQAlignScorer(nn.Module):
                 - A list of dictionaries, each containing the filename and logits for the respective image.
         """
         prompts = [
-            "You are an expert in imaage quality assessment. Can you rate the quality of the image in a single sentence?",
+            query
         ] * len(image_path)
         with torch.inference_mode():  # 没有这一步会存储梯度图之类的导致OOM
             output_logits = []
             cal_logits = []
             for prompt, path in tqdm(zip(prompts, image_path), total=len(prompts)):
                 print(path)
+                print(prompt)
                 pixel_values = (
                     internvl_load_image(path, max_num=self.max_num)
                     .to(self.dtype)

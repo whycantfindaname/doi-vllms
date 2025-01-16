@@ -18,7 +18,7 @@ parser.add_argument('--eval_dataset', type=str, required=True, choices=['q-bench
 args = parser.parse_args()
 if args.eval_dataset == 'q-bench':
     raw_data, processed_data = process_qbench()
-elif args.eval_dataset == 'doi-bench':
+elif args.eval_dataset == 'doi-bench-mcq':
     raw_data, processed_data = process_benchmark_mcq()
 elif args.eval_dataset == 'doi-bench-saq':
     raw_data, processed_data = process_benchmark_saq()

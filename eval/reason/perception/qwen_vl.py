@@ -18,7 +18,7 @@ parser.add_argument('--eval_dataset', type=str, required=True, choices=['q-bench
 args = parser.parse_args()
 if args.eval_dataset == 'q-bench':
     raw_data, processed_data = process_qbench()
-elif args.eval_dataset == 'doi-bench':
+elif args.eval_dataset == 'doi-bench-mcq':
     raw_data, processed_data = process_benchmark_mcq()
 elif args.eval_dataset == 'doi-bench-saq':
     raw_data, processed_data = process_benchmark_saq()
@@ -27,6 +27,8 @@ tokenizer = AutoTokenizer.from_pretrained(args.model_base, trust_remote_code=Tru
 if os.path.exists(args.save_path):
     print(f"File {args.save_path} already exists. Exiting...")
     exit()
+else:
+    os.makedirs(os.path.dirname(args.save_path), exist_ok=True)
 # use bf16
 # model_path = "../models/qb_finetuen_weights/qwen-vl-chat_lora-True_qlora-False-qinstruct_qalign"
 model_path = args.model_path
@@ -57,6 +59,6 @@ for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
         print("GT:", gt["ground_truth"])
         print("Pred:", gt["pred_ans"])
 
-# Save the predicted answers to a file
-with open(args.save_path, 'w') as f:
-    json.dump(raw_data, f, indent=4, ensure_ascii=False)
+    # Save the predicted answers to a file
+    with open(args.save_path, 'w') as f:
+        json.dump(raw_data, f, indent=4, ensure_ascii=False)
