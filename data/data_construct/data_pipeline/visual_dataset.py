@@ -56,7 +56,7 @@ def process_all_bbox(meta_item):
     # if image != 'LIVEfb_VOC2012__2009_004232.jpg':
     #     return
     save_folder_base = '../datasets/images/train_vis_dist'
-    save_folder_base = '../datasets/images/bench_vis_dist_v2'
+    # save_folder_base = '../datasets/images/bench_vis_dist_v2'
     # save_folder_base = 'test'
     os.makedirs(save_folder_base, exist_ok=True)
     
@@ -86,9 +86,9 @@ def process_all_bbox(meta_item):
         distortion_type = distortion_type.replace(" ", "_")      # 替换文件名中的空格
         save_path = os.path.join(image_folder_path, f"{distortion_type}.jpg")
         
-        # Skip if the result already exists
-        if os.path.exists(save_path):
-            continue
+        # # Skip if the result already exists
+        # if os.path.exists(save_path):
+        #     continue
         
         for dist_item in items:
             coord = dist_item['coordinates']
@@ -110,4 +110,4 @@ def process_all_bbox(meta_item):
             input()
 # 使用多线程处理
 with ThreadPoolExecutor(max_workers=8) as executor:
-    list(tqdm(executor.map(process_all_bbox, meta_data1), total=len(meta_data1)))
+    list(tqdm(executor.map(process_all_bbox, meta_data2[0:10]), total=len(meta_data2)))

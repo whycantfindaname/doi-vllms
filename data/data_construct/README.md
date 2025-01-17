@@ -5,8 +5,8 @@
 
 ## 2. 生成退化图片
 ```
+cp data/data_construct/data_pipeline/tokenization_qwen.py ../models/Qwen-VL-Chat
 python data/data_construct/data_pipeline/visual_qwenvl.py
-
 ```
 这里使用了qwenvl带的画图工具，每一个图片不同退化存在不同新的退化图上，位置在datasets/images/train_vis_dist下。对于一张图片A.jpg的low clarity，具体位置为datasets/images/train_vis_dist/A/Low_clarity.jpg，表现形式为框，每个框左上角有对应的id
 

@@ -536,9 +536,9 @@ class Visualizer:
 
         # 计算默认字体大小和线条宽度
         self._default_font_size = max(
-            np.sqrt(self.output.height * self.output.width) // 55, 15 // scale
+            np.sqrt(self.output.height * self.output.width) // 50, 30 // scale
         )
-        self._default_linewidth = max(self._default_font_size / 7, 1)
+        self._default_linewidth = max(self._default_font_size / 4, 1)
 
     def draw_text(
         self,
@@ -552,6 +552,7 @@ class Visualizer:
     ):
         if not font_size:
             font_size = self._default_font_size
+        print(font_size)
 
         color = np.maximum(list(mpl.colors.to_rgb(color)), 0.2)
         color[np.argmax(color)] = max(0.8, np.max(color))
@@ -579,7 +580,7 @@ class Visualizer:
 
         # 根据 bbox 尺寸动态调整线条宽度
         linewidth = max(min(width, height) / 150, self._default_linewidth)
-
+        print(linewidth)
         self.output.ax.add_patch(
             mpl.patches.Rectangle(
                 (x0, y0),

@@ -30,9 +30,8 @@ system_prompt = (
     + "Please provide an analysis for each bounding box and its corresponding distortion in the following format:\n"
     + "bbox i:\n"
     + " 1. **Position**: Identify which objects in the first image are affected by the distortion, based on the the region marked by the bounding box in the second image." 
-    + " The bounding box may include part of objects. So the reponse should be specific, detailed and accurate, relating to the original affected objects and their position in the first image." 
-    + " For example, such as 'the tree branches in the upper-left background' or 'The clothing on the shoulder of the young boy riding the mechanical horse'. If multiple objects are affected, list them all\n"
-    + " For each bounding box, provide a distinct description of the affected positions.\n"
+    + " The bounding box may include part of objects. So the reponse should be specific, detailed and accurate, relating to the original affected objects and their position in the first image, such as 'the tree branches in the upper-left background' or 'The clothing on the shoulder of the young boy riding the mechanical horse'. If multiple objects are affected, list them all\n"
+    + " For each bounding box, avoid repeating same description about the affected position as other bounding boxes. Strive to generate diverse and varied descriptions.\n"
     + " 2. **Severity**: Assess the severity of the distortion, which can be one of the following three levels:\n"
     + "   - **Minor**: Barely perceptible upon close inspection.\n"
     + "   - **Moderate**: Clearly noticeable at a glance.\n"  
@@ -91,7 +90,7 @@ def gpt4o(origin_img_path, distorted_img_path, query, system_prompt):
         }
     }
     resp = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-2024-11-20",
         messages=[
             {
                 "role": "system",
@@ -199,7 +198,6 @@ if __name__ == "__main__":
             print("=" * 50)
             print(f"Processing distortion type: {distortion_type}")
             print(dist_info)
-            input()
             
             # Generate analysis using GPT for the current distortion type
             try:
