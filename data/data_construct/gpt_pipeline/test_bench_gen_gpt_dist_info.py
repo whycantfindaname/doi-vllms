@@ -19,28 +19,26 @@ client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_API_BASE)
 parser = argparse.ArgumentParser(
     description="To Prompt GPT-4 for Image Quality Assessment"
 )
-parser.add_argument("--meta_file", type=str, default='data/meta_json/train-v1/test/dist_info_v2_clean.json')
-parser.add_argument("--image_folder", type=str, default='../datasets/images/train_vis_dist')
+parser.add_argument("--meta_file", type=str, default='data/meta_json/benchmark-v1/test/dist_info_v2_clean.json')
+parser.add_argument("--image_folder", type=str, default='../datasets/images/bench_vis_dist_v2')
 parser.add_argument("--desp_file", type=str, default='data/meta_json/description.json')
-parser.add_argument("--save_file", type=str, default='data/meta_json/train-v1/test/test_dist_info_v2.json')
-
+parser.add_argument("--save_file", type=str, default='data/meta_json/benchmark-v1/test/test_dist_info_v3.json')
 system_prompt = (
     "You are an expert in image quality assessment. You are given two images: the first image is the original, and the second image is the same with bounding boxes and an ID in the upper-left corner of each box. The bounding boxes mark the regions affected by distortion. "
     + "Each distortion is described in terms of its bounding box ID and distortion name." 
     + "Please provide an analysis for each bounding box and its corresponding distortion in the following format:\n"
     + "bbox i:\n"
-    + " 1. **Position**: Identify which objects in the first image are affected by the distortion, based on the the region marked by the bounding box in the second image." 
-    + " The bounding box may include part of objects. So the reponse should be specific, detailed and accurate, relating to the original affected objects and their position in the first image." 
-    + " For example, such as 'the tree branches in the upper-left background' or 'The clothing on the shoulder of the young boy riding the mechanical horse'. If multiple objects are affected, list them all\n"
-    + " For each bounding box, provide a distinct description of the affected positions.\n"
+    + " 1. **Position**: Identify which objects in the first image are affected by the distortion, based on the the region marked by the bounding box in the second image. The bounding box may include part of objects. So the reponse should be specific and detailed, relating to the original affected objects and their position in the first image. For each bounding box, provide a distinct description of the affected positions.\n"
     + " 2. **Severity**: Assess the severity of the distortion, which can be one of the following three levels:\n"
     + "   - **Minor**: Barely perceptible upon close inspection.\n"
     + "   - **Moderate**: Clearly noticeable at a glance.\n"  
     + "   - **Severe**: Significantly impacts the overall perception of the image.\n"  
     + " 3. **Visual Manifestations**: Describe how the distortion appears in the affected areas. Include any changes in the shape or appearance of objects. For example, with motion blur, affected objects may appear with stretched trajectories or blurred details.\n"
     + " 4. **Perception Impact**: Evaluate how the distortion affects the visual perception of the objects. Focus on low-level attributes like visibility, sharpness, detail, color, clarity, lighting, texture, and composition. Use the exact name of the distortion as provided, without any modifications.\n"
-    + " Use the provided images and bounding box solely as a reference to guide your analysis. Avoid directly quoting or replicating any bounding box information like 'marked region' or 'bounding box' in your response, and approach the analysis as if you only looks at the image without bounding boxes and personally reviewing the distortion."
+    + " Use the provided images and bounding box solely as a reference to guide your analysis. Avoid directly quoting or replicating any bounding box information in your response, and approach the analysis as if you only looks at the image without bounding boxes and personally reviewing the distortion."
 )
+
+
 # Weave will track the inputs, outputs and code of this function
 # @weave.op()
 def gpt4o(origin_img_path, distorted_img_path, query, system_prompt):
@@ -65,7 +63,7 @@ def gpt4o(origin_img_path, distorted_img_path, query, system_prompt):
                         },
                         "position": {
                             "type": "string",
-                            "description": "The names of the objects in the image affected by the distortion."
+                            "description": "Only the names of the objects in the image affected by the distortion."
                         },
                         "severity": {
                             "type": "string",
@@ -91,7 +89,7 @@ def gpt4o(origin_img_path, distorted_img_path, query, system_prompt):
         }
     }
     resp = client.chat.completions.create(
-        model="gpt-4o-2024-08-06",
+        model="gpt-4o-2024-11-20",
         messages=[
             {
                 "role": "system",
@@ -199,7 +197,6 @@ if __name__ == "__main__":
             print("=" * 50)
             print(f"Processing distortion type: {distortion_type}")
             print(dist_info)
-            input()
             
             # Generate analysis using GPT for the current distortion type
             try:

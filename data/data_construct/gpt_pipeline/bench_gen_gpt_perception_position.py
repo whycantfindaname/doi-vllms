@@ -9,6 +9,7 @@ from PIL import Image
 import random
 from data_utils import load_json, encode_img, conver_meta_data_to_gpt
 from collections import Counter
+from typing import Optional
 
 
 OPENAI_API_KEY = "sk-tE7K8vJ9Dla5zDMx87F9EeB7372340C68067179938991e54"
@@ -18,15 +19,15 @@ client = OpenAI(api_key=OPENAI_API_KEY, base_url=OPENAI_API_BASE)
 parser = argparse.ArgumentParser(
     description="To Prompt GPT-4 for Image Quality Assessment"
 )
-parser.add_argument("--meta_file", type=str, default='data/meta_json/benchmark-v1/release/dist_info_v1.json')
-parser.add_argument("--mcq_file", type=str, default='data/meta_json/benchmark-v1/test/test_mcq_position.json')
+parser.add_argument("--meta_file", type=str, default='data/meta_json/benchmark-v1/test/test_dist_info_v2.json')
+parser.add_argument("--mcq_file", type=str, default='data/meta_json/benchmark-v1/test/test_perception_position.json')
 parser.add_argument("--image_folder", type=str, default='../datasets/images/doi-images-all/')
+parser.add_argument("--desp_file", type=str, default='data/meta_json/description.json')
 
 
 # Weave will track the inputs, outputs and code of this function
 # @weave.op()
-def gpt4o(img_path, query, system_prompt, example_meta_inputs, example_gpt_output_strs):
-    mime_type, img_base64 = encode_img(img_path)
+def gpt4o(query, system_prompt, example_meta_inputs: Optional[str]=None, example_gpt_output_strs: Optional[str]=None):
     resp_format = {
     "type": "json_schema",
     "json_schema": {
@@ -72,19 +73,19 @@ def gpt4o(img_path, query, system_prompt, example_meta_inputs, example_gpt_outpu
                 "content": system_prompt,
             }
         ]
-    for meta_input, gpt_output_str in zip(example_meta_inputs, example_gpt_output_strs):
-        messages.append(
-            {
-                "role": "user",
-                "content": meta_input,
-            }
-        )
-        messages.append(
-            {
-                "role": "assistant",
-                "content": gpt_output_str,
-            }
-        )
+    # for meta_input, gpt_output_str in zip(example_meta_inputs, example_gpt_output_strs):
+    #     messages.append(
+    #         {
+    #             "role": "user",
+    #             "content": meta_input,
+    #         }
+    #     )
+    #     messages.append(
+    #         {
+    #             "role": "assistant",
+    #             "content": gpt_output_str,
+    #         }
+    #     )
     messages.append(
         {
             "role": "user",
@@ -152,12 +153,18 @@ def check_duplicate(meta_data):
 if __name__ == "__main__":
     # weave.init("image quality assessment")
     args = parser.parse_args()
-    idx_meta_start = 2
-    idx_meta_end = 3
+    idx_meta_start = 0
+    idx_meta_end = -1
 
     meta_file = args.meta_file
     mcq_file = args.mcq_file
     image_folder = args.image_folder
+    desp_file = args.desp_file
+    
+    if os.path.exists(desp_file):
+        desp_data = load_json(desp_file)
+    else:
+        print("Please generate description first")
 
     meta_data = load_json(meta_file)
     if os.path.exists(mcq_file):
@@ -183,22 +190,36 @@ if __name__ == "__main__":
         print(img_name)
         img_path = os.path.join(image_folder, img_name)
         
-        assess_query = convert_meta_item_to_gpt(meta_item)
-        print(assess_query)
-        input()
+        desp_item = next(
+            (item for item in desp_data if item["filename"] == img_name), None
+        )
+        if desp_item:
+            description_parts = desp_item["gpt4v_description"].split("\n\n")
+            description_parts = (
+                description_parts
+                if len(description_parts) > 1
+                else desp_item["gpt4v_description"].split("\n")
+            )
+            description = (
+                description_parts[1]
+                .replace("**Answer:** ", "")
+                .replace("**Answer:**", "")
+                .replace("Answer: ", "")
+                .strip()  # This removes leading or trailing spaces
+                if len(description_parts) > 1
+                else description_parts
+            )
         
-        system_prompt_assess_data = (
-            "You are an expert in image quality assessment. Your task is to generate comprehensive question-and-answer pairs based on the provided image and its associated distortion information. The distortion information includes:\n"
-            + " - **Distortion ID**\n"
-            + " - **Distortion Type**\n"
-            + " - **Position**\n"
-            + " - **Severity**\n"
-            + " - **Visual Manifestation**\n"
-            + " - **Perception Impact**\n"
+        query = f"[Image Information]\n{description[0]}\n" + convert_meta_item_to_gpt(meta_item)
+        print(query)
+        input()
+        system_prompt = (
+            "You are an expert in image quality assessment. Your task is to generate comprehensive question-and-answer pairs based on the image information and its associated distortion information."
+            + " Image information is a description of the image. Distortion information is a list of distortions and their positions in the image."
             + " #### Question Types\n"
             + " Generate questions of the following types: **yes-or-no**, **what**, **how**, **why**, or **where**. Use one or multiple types as appropriate for each distortion.\n"
             + " #### Goal\n"
-            + " The primary goal is to evaluate the AI assistant's ability to accurately identify and assess distortions. Your questions and answers should comprehensively test its understanding and reasoning capabilities.\n"
+            + " The primary goal is to evaluate the AI assistant's ability to accurately identify distortions. Your questions and answers should comprehensively test its distortion perception capabilities.\n"
             + " #### Key Areas of Concern\n"
             + " For each distortion, consider the following six aspects in the generated answers and generate few question-answer pairs per distortion:\n"
             + " 1. The existence of the distortion.\n"
@@ -226,7 +247,7 @@ if __name__ == "__main__":
 
         try:
             print("Generating question answer pairs...")
-            content= gpt4o(img_path, assess_query, system_prompt_assess_data, example_meta_inputs, example_gpt_output_strs)
+            content= gpt4o(img_path, query, system_prompt)
             print(content)
             resp_dict = json.loads(content)
             meta_item["mcq"] = resp_dict["question_answer_pair"]

@@ -56,6 +56,7 @@ def process_all_bbox(meta_item):
     # if image != 'LIVEfb_VOC2012__2009_004232.jpg':
     #     return
     save_folder_base = '../datasets/images/train_vis_dist'
+    save_folder_base = '../datasets/images/bench_vis_dist_v2'
     # save_folder_base = 'test'
     os.makedirs(save_folder_base, exist_ok=True)
     
@@ -109,4 +110,4 @@ def process_all_bbox(meta_item):
             input()
 # 使用多线程处理
 with ThreadPoolExecutor(max_workers=8) as executor:
-    list(tqdm(executor.map(process_all_bbox, meta_data2), total=len(meta_data2)))
+    list(tqdm(executor.map(process_all_bbox, meta_data1), total=len(meta_data1)))
