@@ -7,8 +7,8 @@ from tqdm import tqdm
 import json
 raw_data, processed_data = process_qbench()
 save_path = 'results/q_bench/mplug-owl2/co-instruct.json'
-raw_data, processed_data = process_benchmark_mcq()
-save_path = 'results/doi_bench/mplug-owl2/co-instruct.json'
+raw_data, processed_data = process_benchmark_mcq('data/meta_json/benchmark-v1/release/mcq_data.json')
+save_path = 'results/doi_bench/mplug-owl2/co-instruct_position_mcq.json'
 # raw_data, processed_data = process_benchmark_saq()
 # save_path = 'results/doi_bench/mplug-owl2/co-instruct_position.json'
 os.makedirs(os.path.dirname(save_path), exist_ok=True)
@@ -17,7 +17,7 @@ model = AutoModelForCausalLM.from_pretrained("../models/co-instruct",
                                              trust_remote_code=True, 
                                              torch_dtype=torch.float16,
                                              attn_implementation="eager", 
-                                             device_map="auto")
+                                             device_map="cuda")
 tokenizer = AutoTokenizer.from_pretrained("../models/co-instruct", trust_remote_code=True)
 from PIL import Image
 # prompt = "USER: The image: <|image|> Why is the overall quality of the image is not good? ASSISTANT:"

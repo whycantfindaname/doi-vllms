@@ -7,23 +7,23 @@ eval "$(conda shell.bash hook)"
 # 激活 lmms-finetune 环境并运行脚本
 conda activate lmms-finetune
 python eval/reason/perception/internvl2_5.py \
-    --save_path results/doi_bench/internvl2_5/internvl2_5.json \
+    --save_path results/doi_bench/internvl2_5/internvl2_5_mcq.json \
     --eval_dataset doi-bench-mcq
 
-# python eval/reason/perception/internvl2.py \
-#     --save_path results/doi_bench/internvl2/internvl2_position.json \
-#     --eval_dataset doi-bench-saq
+python eval/reason/perception/internvl2.py \
+    --save_path results/doi_bench/internvl2/internvl2_mcq.json \
+    --eval_dataset doi-bench-mcq
 
 python eval/reason/perception/qwen_vl.py \
-    --save_path results/doi_bench/qwenvl/qwenvl.json \
+    --save_path results/doi_bench/qwenvl/qwenvl_mcq.json \
     --eval_dataset doi-bench-mcq
 
-# python eval/reason/perception/qwen2_vl.py \
-#     --save_path results/doi_bench/qwen2vl/qwen2vl_position.json \
-#     --eval_dataset doi-bench-saq
+python eval/reason/perception/qwen2_vl.py \
+    --save_path results/doi_bench/qwen2vl/qwen2vl_mcq.json \
+    --eval_dataset doi-bench-mcq
 
 python eval/reason/perception/llava_ov.py \
-    --save_path results/doi_bench/llava/llavaov.json \
+    --save_path results/doi_bench/llava/llavaov_mcq.json \
     --eval_dataset doi-bench-mcq
 
 # 激活 qalign 环境并运行脚本

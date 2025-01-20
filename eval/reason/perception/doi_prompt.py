@@ -12,23 +12,23 @@ def convert_to_saq(data):
     
     return formatted_output, formatted_output_grounding
 
-def process_benchmark(json_file='data/meta_json/benchmark-v1/test/test_mcq_v1.json', save_path='data/meta_json/benchmark-v1/test/test_mcq_qbench_format_v1.json', image_folder='../datasets/images/doi-images-all'):
+def process_benchmark(json_file='data/meta_json/benchmark-v1/release/mcq_data.json', save_path='data/meta_json/benchmark-v1/release/mcq_data_qbench_format.json', image_folder='../datasets/images/doi-images-all'):
     with open(json_file, 'r') as f:
         data = json.load(f)
 
     # 遍历数据并转换为目标格式
     output = []
     for item in data:
-        img_path = item["image"]
+        img_path = item["img_path"]
         mcq = item["mcq"]
         for question_item in mcq:
             candidates = question_item["false candidates"] + [question_item["answer"]]
             random.shuffle(candidates)
-            print(candidates)
+            concern = question_item["concern"]
             # input()
             new_item = {
-                'type': question_item["question_type"],  # 根据question_type设定type
-                'concern': question_item["concern"],  # concern保留原样
+                'type': None,  # 根据question_type设定type
+                'concern': concern,  # concern保留原样
                 'question': question_item["question"],  # question保留原样
                 'img_path': os.path.join(image_folder, img_path),  # 图片路径
                 'candidates': candidates,  # 合并选项
@@ -74,12 +74,13 @@ def process_benchmark_ground(json_file='../gen_prompt/dataset/assessment_final_4
     return temp_data, processed_data
 
 
-def process_benchmark_mcq(json_file='data/meta_json/benchmark-v1/release/mcq.json'):
+def process_benchmark_mcq(json_file='data/meta_json/benchmark-v1/release/mcq_data.json'):
     with open(json_file, 'r') as f:
         raw_data = json.load(f)
     processed_data = []
     for item in raw_data:
         image_path = os.path.join('../datasets/images/doi-images-all', item["img_path"])
+        # image_path = item["img_path"]
         if not os.path.exists(image_path):
             print(f"Image {image_path} does not exist. Skipping...")
             continue
@@ -115,6 +116,8 @@ def process_benchmark_saq(json_file='data/meta_json/benchmark-v1/release/saq.jso
     return raw_data, processed_data
 
 if __name__ == '__main__':
-    raw_data, processed_data = process_benchmark_mcq()
-    print(processed_data[0])
+    # raw_data, processed_data = process_benchmark_mcq()
+    # print(processed_data[0])
+    process_benchmark()
+    
     # process_benchmark()

@@ -11,14 +11,14 @@ import torch
 parser = argparse.ArgumentParser()
 parser.add_argument('--model_path', type=str, default='../models/qwen2-vl-7b-instruct', help='path to the model')
 parser.add_argument('--model_base', type=str, default='../models/qwen2-vl-7b-instruct', help='base name of the model')
-parser.add_argument('--device', type=str, default='cuda:0', help='device to run the model')
+parser.add_argument('--device', type=str, default='cuda', help='device to run the model')
 parser.add_argument('--save_path', type=str, required=True, help='path to save the predicted answers')
 parser.add_argument('--eval_dataset', type=str, required=True, choices=['q-bench', 'doi-bench-mcq', 'doi-bench-saq'], help='datasets to evaluate')
 args = parser.parse_args()
 if args.eval_dataset == 'q-bench':
     raw_data, processed_data = process_qbench()
 elif args.eval_dataset == 'doi-bench-mcq':
-    raw_data, processed_data = process_benchmark_mcq()
+    raw_data, processed_data = process_benchmark_mcq('data/meta_json/benchmark-v1/release/mcq_data.json')
 elif args.eval_dataset == 'doi-bench-saq':
     raw_data, processed_data = process_benchmark_saq()
 
@@ -40,7 +40,7 @@ print(model.dtype)
 
 # The default range for the number of visual tokens per image in the model is 4-16384. You can set min_pixels and max_pixels according to your needs, such as a token count range of 256-1280, to balance speed and memory usage.
 min_pixels = 4*28*28
-max_pixels = 4096*28*28
+max_pixels = 8192*28*28
 processor = AutoProcessor.from_pretrained(args.model_base)
 # processor = AutoProcessor.from_pretrained(args.model_base, min_pixels=min_pixels, max_pixels=max_pixels)
 
@@ -72,25 +72,6 @@ for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
         generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
     )
 
-    # Attempt to parse output_text[0] as JSON if it's a string
-    # if isinstance(output_text, list) and len(output_text) > 0 and isinstance(output_text[0], str):
-    #     try:
-    #         # Replace single quotes with double quotes
-    #         json_str = re.sub(r"(?<!\\)'", '"', output_text[0].strip())
-            
-    #         # Parse the modified string as JSON
-    #         parsed_output = json.loads(json_str)
-            
-    #         if isinstance(parsed_output, list) and len(parsed_output) > 0 and isinstance(parsed_output[0], dict):
-    #             gt["pred_ans"] = parsed_output[0].get('text', '')  # Safely get 'text' if it exists
-    #         else:
-    #             print("Parsed output has an unexpected structure:", parsed_output)
-    #             gt["pred_ans"] = ""  # Assign a default or handle as needed
-    #     except json.JSONDecodeError:
-    #         print("Failed to parse output_text as JSON after replacements:", json_str)
-    #         gt["pred_ans"] = json_str[0]  # Handle the case where parsing fails
-    # else:
-    #     print("Unexpected structure for output_text:", output_text)
     gt["pred_ans"] = output_text[0]  # Handle cases where output_text is not as expected
 
     try:
@@ -99,6 +80,6 @@ for gt, data in tqdm(zip(raw_data,processed_data), total=len(raw_data)):
     except:
         print("Pred:", gt["pred_ans"])
 
-# Save the predicted answers to a file
-with open(args.save_path, 'w') as f:
-    json.dump(raw_data, f, indent=4, ensure_ascii=False)
+    # Save the predicted answers to a file
+    with open(args.save_path, 'w') as f:
+        json.dump(raw_data, f, indent=4, ensure_ascii=False)

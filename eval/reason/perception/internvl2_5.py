@@ -122,7 +122,7 @@ if __name__ == '__main__':
     if args.eval_dataset == 'q-bench':
         raw_data, processed_data = process_qbench()
     elif args.eval_dataset == 'doi-bench-mcq':
-        raw_data, processed_data = process_benchmark_mcq()
+        raw_data, processed_data = process_benchmark_mcq('data/meta_json/benchmark-v1/release/mcq_data.json')
     elif args.eval_dataset == 'doi-bench-saq':
         raw_data, processed_data = process_benchmark_saq()
     path = args.model_path
@@ -159,6 +159,6 @@ if __name__ == '__main__':
             print("Pred:", gt["pred_ans"])
         # input()
 
-    with open(save_path, 'w') as f:
-        json.dump(raw_data, f, indent=4, ensure_ascii=False)
+        with open(save_path, 'w') as f:
+            json.dump(raw_data, f, indent=4, ensure_ascii=False)
 

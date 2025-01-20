@@ -19,7 +19,7 @@ args = parser.parse_args()
 if args.eval_dataset == 'q-bench':
     raw_data, processed_data = process_qbench()
 elif args.eval_dataset == 'doi-bench-mcq':
-    raw_data, processed_data = process_benchmark_mcq()
+    raw_data, processed_data = process_benchmark_mcq('data/meta_json/benchmark-v1/release/mcq_data.json')
 elif args.eval_dataset == 'doi-bench-saq':
     raw_data, processed_data = process_benchmark_saq()
 

@@ -1,34 +1,34 @@
 import json
 import argparse
 
-# Parse the command line arguments
 parser = argparse.ArgumentParser()
-parser.add_argument('--json_file', type=str, required=True, help='Path to the JSON file containing the predictions')
+parser.add_argument('qbench_file', type=str, help='Path to the data file')
 args = parser.parse_args()
 
-# Load the JSON data from the file
-with open(args.json_file, 'r') as file:
-    data_list = json.load(file)
+# Load the data
+with open(args.qbench_file, 'r') as f:
+    data = json.load(f)
 
-# Clean the predicted answer by removing trailing punctuation and standardizing case
-def clean_pred_ans(pred_ans):
-    return pred_ans.strip().upper().split('.')[0]  # Remove trailing period and convert to uppercase
+correct_counts = 0
+# Iterate over the data to populate counts and correct predictions
+for item in data:
+    correct = item['correct_ans']
+    # Ensure that 'pred_ans' is stripped of any extra characters like '.' and mapped correctly.
+    try:
+        pred_index = ord(item['pred_ans'].strip()[0].upper()) - ord('A')
+    except:
+        pred_index = ord(item['response'].strip()[0].upper()) - ord('A')
+    try:
+        pred = item['candidates'][pred_index]  # Map 'A', 'B', 'C', etc. to the correct answer
+        # print("Pred vs. Correct:", pred, correct)
+    except:
+        print(item)
+        # print(pred_index, item['candidates'])
+        # input()
+    # Update type counts
+    if correct == pred:
+        correct_counts += 1
 
-# Calculate the accuracy
-def calculate_accuracy(data_list):
-    correct_count = 0
-    total_count = len(data_list)
 
-    for data in data_list:
-        pred_ans_clean = clean_pred_ans(data["pred_ans"])
-        correct_ans_clean = data["correct_ans"].strip().upper().rstrip('.')
-        
-        if pred_ans_clean == correct_ans_clean:
-            correct_count += 1
-    print(f"Correct count: {correct_count}, Total count: {total_count}")
-    accuracy = correct_count / total_count if total_count > 0 else 0
-    return accuracy
-
-# Calculate and print the accuracy
-accuracy = calculate_accuracy(data_list)
-print(f"Accuracy: {accuracy * 100:.2f}%")
+overall_accuracy = correct_counts / len(data) if len(data) > 0 else 0
+print("Overall Accuracy:", overall_accuracy)
